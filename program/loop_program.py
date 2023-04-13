@@ -22,7 +22,6 @@ class Program:
         # Ждем 30 секунд
         time.sleep(30)
 
-
         # Открываем вкладку с сайтом https://vk.com/aesthetic_tyann
         browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
         time.sleep(30)
@@ -30,7 +29,25 @@ class Program:
         browser.quit()
 
     def get_name(self):  # Получение названия группы
-        pass
+        import os
+
+        # Запрашиваем у пользователя новое название для папки
+        new_name = "ВК"
+
+        # Получаем имя папки из полного пути
+        folder_name = os.path.basename(graf.grafic.selected_folder_path)
+
+        # Получаем путь к родительской папке
+        parent_folder_path = os.path.dirname(graf.grafic.selected_folder_path)
+
+        # Составляем новый путь к папке с новым именем
+        new_folder_path = os.path.join(parent_folder_path, new_name)
+
+        # Переименовываем папку
+        os.rename(graf.grafic.selected_folder_path, new_folder_path)
+
+        # Выводим сообщение об успешном переименовании папки
+        print(f"Папка {folder_name} успешно переименована в {new_name}")
 
     def ceate_folder(self, folder_name, path):  # Создание папки для скачивания
         import os
