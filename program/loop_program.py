@@ -16,12 +16,13 @@ driver_path = 'путь_к_файлу/chromedriver.exe'
 # Создаем экземпляр класса ChromeDriver
 browser = webdriver.Chrome(executable_path=driver_path)
 
+new_name = ""
 
 # Класс выполнения программы
 class Program:
     def open_site(self):
         import time
-
+        global new_name
         # Открываем вкладку с сайтом https://vk.com/feed
         browser.get('https://vk.com/feed')
 
@@ -30,6 +31,9 @@ class Program:
 
         # Открываем вкладку с сайтом https://vk.com/aesthetic_tyann
         browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
+        WebDriverWait(browser, 5).until(EC.presence_of_element_located(
+            (By.XPATH, "//h1[@class='page_name']")))
+        new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
         time.sleep(10)
         # Закрываем браузер
         browser.quit()
@@ -59,10 +63,7 @@ class Program:
 
         # Запрашиваем у пользователя новое название для папки
 
-        WebDriverWait(browser, 5).until(EC.presence_of_element_located(
-                    (By.XPATH, "//h1[@class='page_name']")))
-        new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
-        print(new_name)
+        global new_name
 
         # Получаем имя папки из полного пути
         folder_name = os.path.basename(folder_path)
