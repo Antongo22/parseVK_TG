@@ -1,35 +1,31 @@
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-
 import graf.grafic
 from graf.grafic import Window
-from selenium import webdriver
 
 window = Window()
 new_folder_path = None
-
-# Указываем путь к chromedriver.exe
-driver_path = 'путь_к_файлу/chromedriver.exe'
-
-# Создаем экземпляр класса ChromeDriver
-browser = webdriver.Chrome(executable_path=driver_path)
 
 
 # Класс выполнения программы
 class Program:
     def open_site(self):
+        from selenium import webdriver
         import time
+
+        # Указываем путь к chromedriver.exe
+        driver_path = 'путь_к_файлу/chromedriver.exe'
+
+        # Создаем экземпляр класса ChromeDriver
+        browser = webdriver.Chrome(executable_path=driver_path)
 
         # Открываем вкладку с сайтом https://vk.com/feed
         browser.get('https://vk.com/feed')
 
         # Ждем 30 секунд
-        time.sleep(1)
+        time.sleep(3)
 
         # Открываем вкладку с сайтом https://vk.com/aesthetic_tyann
         browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
-        time.sleep(10)
+        time.sleep(3)
         # Закрываем браузер
         browser.quit()
 
@@ -56,11 +52,7 @@ class Program:
         folder_path = os.path.join(self.path, self.folder_name)
 
         # Запрашиваем у пользователя новое название для папки
-
-        WebDriverWait(browser, 5).until(EC.presence_of_element_located(
-            (By.XPATH, "//a[@class='im-page--title-main-inner _im_page_peer_name']")))
-
-        new_name = browser.find_element(By.XPATH, "//a[@class='im-page--title-main-inner _im_page_peer_name']").text
+        new_name = "Вк"
 
         # Получаем имя папки из полного пути
         folder_name = os.path.basename(folder_path)
