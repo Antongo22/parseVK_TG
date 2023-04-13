@@ -12,7 +12,6 @@ new_folder_path = None
 # Указываем путь к chromedriver.exe
 driver_path = 'путь_к_файлу/chromedriver.exe'
 
-
 # Создаем экземпляр класса ChromeDriver
 browser = webdriver.Chrome(executable_path=driver_path)
 
@@ -59,7 +58,7 @@ class Program:
         # Запрашиваем у пользователя новое название для папки
 
         WebDriverWait(browser, 5).until(EC.presence_of_element_located(
-                    (By.XPATH, "//a[@class='im-page--title-main-inner _im_page_peer_name']")))
+            (By.XPATH, "//a[@class='im-page--title-main-inner _im_page_peer_name']")))
         new_name = browser.find_element(By.XPATH, "//a[@class='im-page--title-main-inner _im_page_peer_name']").text
 
         # Получаем имя папки из полного пути
