@@ -28,9 +28,9 @@ class Window:
             from program.loop_program import Program
 
             prog = Program()
+            prog.ceate_folder("тестовая папка", selected_folder_path)
             prog.open_site()
             prog.get_name()
-            prog.ceate_folder("тестовая папка", selected_folder_path)
             prog.save_last_register_time()
             prog.save_meadia()
             self.end()
