@@ -13,11 +13,11 @@ class Program:
     def save_last_register_time(self):  # Запись в базу данных запись, с которолй началась выгрзка
         pass
 
-    def save_meadia(self): # Сохранение всех данных в одку папку
+    def save_meadia(self):  # Сохранение всех данных в одку папку
         pass
 
-    def end_program(self): # Условие и выход из программы
+    def end_program(self):  # Условие и выход из программы
         pass
 
-    def main(self): # Главный методработы программы
+    def main(self):  # Главный методработы программы
         pass
