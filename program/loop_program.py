@@ -29,6 +29,7 @@ class Program:
         # Закрываем браузер
         browser.quit()
 
+
     def ceate_folder(self, folder_name, path):  # Создание папки для скачивания
         import os
         self.folder_name = folder_name
