@@ -3,13 +3,14 @@ from tkinter import filedialog
 import tkinter as tk
 import re
 import requests
+
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
 service = None  # переменная для определения типа сервиса
 
+
 # Класс графики
 class Window:
-
 
     def start(self):  # Начальный экран бота
 
@@ -27,13 +28,12 @@ class Window:
             from program.loop_program import Program
 
             prog = Program()
+            prog.open_site()
             prog.get_name()
             prog.ceate_folder("тестовая папка", selected_folder_path)
             prog.save_last_register_time()
             prog.save_meadia()
             self.end()
-
-
 
         def done_save(service, reference):  # подтверждение того, что сайт нормальный и можно запускать
             try:

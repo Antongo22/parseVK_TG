@@ -1,3 +1,4 @@
+import graf.grafic
 from graf.grafic import Window
 
 window = Window()
@@ -5,6 +6,29 @@ window = Window()
 
 # Класс выполнения программы
 class Program:
+    def open_site(self):
+        from selenium import webdriver
+        import time
+
+        # Указываем путь к chromedriver.exe
+        driver_path = 'путь_к_файлу/chromedriver.exe'
+
+        # Создаем экземпляр класса ChromeDriver
+        browser = webdriver.Chrome(executable_path=driver_path)
+
+        # Открываем вкладку с сайтом https://vk.com/feed
+        browser.get('https://vk.com/feed')
+
+        # Ждем 30 секунд
+        time.sleep(30)
+
+
+        # Открываем вкладку с сайтом https://vk.com/aesthetic_tyann
+        browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
+        time.sleep(30)
+        # Закрываем браузер
+        browser.quit()
+
     def get_name(self):  # Получение названия группы
         pass
 
@@ -32,6 +56,3 @@ class Program:
     def end_program(self):  # Условие и выход из программы
         pass
         # Заверщение программы
-
-
-
