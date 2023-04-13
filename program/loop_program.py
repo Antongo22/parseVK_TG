@@ -25,11 +25,11 @@ class Program:
         browser.get('https://vk.com/feed')
 
         # Ждем 30 секунд
-        time.sleep(3)
+        time.sleep(1)
 
         # Открываем вкладку с сайтом https://vk.com/aesthetic_tyann
         browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
-        time.sleep(3)
+        time.sleep(10)
         # Закрываем браузер
         browser.quit()
 
@@ -59,6 +59,7 @@ class Program:
 
         WebDriverWait(browser, 5).until(EC.presence_of_element_located(
             (By.XPATH, "//a[@class='im-page--title-main-inner _im_page_peer_name']")))
+
         new_name = browser.find_element(By.XPATH, "//a[@class='im-page--title-main-inner _im_page_peer_name']").text
 
         # Получаем имя папки из полного пути
