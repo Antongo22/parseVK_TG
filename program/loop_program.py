@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import graf.grafic
 from graf.grafic import Window
 from selenium import webdriver
+from vk.parser import Parser
 
 window = Window()
 new_folder_path = None
@@ -18,25 +19,12 @@ browser = webdriver.Chrome(executable_path=driver_path)
 
 new_name = ""
 
+parser = Parser()
+
 # Класс выполнения программы
 class Program:
     def open_site(self):
-        import time
-        global new_name
-        # Открываем вкладку с сайтом https://vk.com/feed
-        browser.get('https://vk.com/feed')
-
-        # Ждем 30 секунд
-        time.sleep(1)
-
-        # Открываем вкладку с сайтом https://vk.com/aesthetic_tyann
-        browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
-        WebDriverWait(browser, 5).until(EC.presence_of_element_located(
-            (By.XPATH, "//h1[@class='page_name']")))
-        new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
-        time.sleep(10)
-        # Закрываем браузер
-        browser.quit()
+        parser.open_site(browser, graf)
 
 
     def ceate_folder(self, folder_name, path):  # Создание папки для скачивания
@@ -44,6 +32,7 @@ class Program:
         self.folder_name = folder_name
         self.path = path
         # склеиваем название папки и путь
+        global new_folder_path
         new_folder_path = os.path.join(path, folder_name)
 
         # создаем папку с заданным именем и путем
@@ -63,7 +52,8 @@ class Program:
 
         # Запрашиваем у пользователя новое название для папки
 
-        global new_name
+        from vk.parser import new_name
+        global new_folder_path
 
         # Получаем имя папки из полного пути
         folder_name = os.path.basename(folder_path)
@@ -84,7 +74,8 @@ class Program:
         pass
 
     def save_meadia(self):  # Сохранение всех данных в одку папку
-        pass
+        global new_folder_path
+        parser.download_images(browser, new_folder_path)
 
     def end_program(self):  # Условие и выход из программы
         pass
