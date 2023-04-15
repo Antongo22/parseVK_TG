@@ -22,7 +22,7 @@ class Parser:
         browser.get('https://vk.com/feed')
 
         # Ждем 30 секунд
-        time.sleep(1)
+        time.sleep(20)
 
         browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
         WebDriverWait(browser, 5).until(EC.presence_of_element_located(
