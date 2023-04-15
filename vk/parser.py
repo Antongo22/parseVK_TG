@@ -34,7 +34,7 @@ class Parser:
         # WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH,
         #                                                                 "//a[@class='wall_text']//img")))
         posts = browser.find_elements(By.XPATH,
-                                      "//div[@class='wall_text']//img")
+                                      "//div[@class='MediaGridContainerWeb--post']//img")
         print(posts)
         count = 0
 
