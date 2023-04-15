@@ -31,10 +31,10 @@ class Parser:
         # Открываем вкладку с сайтом https://vk.com/...
         time.sleep(3)
 
-        WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH,
-                                                                        "//div[contains(@class,'MediaGridContainerWeb--post')]")))
+        # WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH,
+        #                                                                 "//a[@class='wall_text']//img")))
         posts = browser.find_elements(By.XPATH,
-                                      "//a[@class='MediaGrid__interactive']//img")
+                                      "//div[@class='wall_text']//img")
         print(posts)
         count = 0
 
