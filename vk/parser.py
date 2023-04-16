@@ -22,7 +22,7 @@ class Parser:
         browser.get('https://vk.com/feed')
 
         # Ждем 30 секунд
-        time.sleep(30)
+        time.sleep(25)
 
         browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
         WebDriverWait(browser, 5).until(EC.presence_of_element_located(
@@ -52,7 +52,7 @@ class Parser:
             actions = ActionChains(browser)
 
             actions.move_to_element(post).perform()
-            time.sleep(3)
+            time.sleep(2)
 
         browser.execute_script("window.scrollBy(0, 2000)")
         self.download_images(browser, path)

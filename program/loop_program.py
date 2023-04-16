@@ -13,7 +13,6 @@ new_folder_path = None
 # Указываем путь к chromedriver.exe
 driver_path = 'путь_к_файлу/chromedriver.exe'
 
-
 # Создаем экземпляр класса ChromeDriver
 browser = webdriver.Chrome(executable_path=driver_path)
 
@@ -21,11 +20,11 @@ new_name = ""
 
 parser = Parser()
 
+
 # Класс выполнения программы
 class Program:
     def open_site(self):
         parser.open_site(browser, graf)
-
 
     def ceate_folder(self, folder_name, path):  # Создание папки для скачивания
         import os
