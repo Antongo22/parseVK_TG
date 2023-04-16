@@ -5,6 +5,8 @@ import time
 import requests
 import urllib.request
 
+from program.loop_program import browser, new_folder_path
+
 # url = "https://vk.com/"
 # response = requests.get(url)
 # print(response.text)
@@ -12,6 +14,8 @@ import urllib.request
 new_name = ""
 last_posts = []
 count = 0
+tr = False
+
 
 class Parser:
 
@@ -48,11 +52,17 @@ class Parser:
 
         for post in posts:
             urllib.request.urlretrieve(str(post.get_attribute("src")), str(path) + f"/{str(count)}.jpg")
-            count+=1
+            count += 1
             actions = ActionChains(browser)
-
+            time.sleep(2)
+            browser.execute_script("window.scrollBy(0, 300)")
             actions.move_to_element(post).perform()
             time.sleep(3)
 
         browser.execute_script("window.scrollBy(0, 2000)")
-        self.download_images(browser, path)
+        global tr
+        tr = True
+
+    while True:
+        if tr == True:
+            download_images(browser, new_folder_path)
