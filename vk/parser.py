@@ -56,3 +56,4 @@ class Parser:
 
         browser.execute_script("window.scrollBy(0, 2000)")
         self.download_images(browser, path)
+
