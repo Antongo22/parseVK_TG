@@ -54,4 +54,5 @@ class Parser:
             actions.move_to_element(post).perform()
             time.sleep(3)
 
+        browser.execute_script("window.scrollBy(0, 2000)")
         self.download_images(browser, path)
