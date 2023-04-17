@@ -12,7 +12,7 @@ import urllib.request
 # print(response.text)
 
 
-wh = True
+wh = 0
 new_name = ""
 last_posts = []
 count = 0
@@ -69,4 +69,4 @@ class Parser:
 
             browser.execute_script("window.scrollBy(0, 2000)")
         except Exception:
-            wh = False
+            wh = wh + 1
