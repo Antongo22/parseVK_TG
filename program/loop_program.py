@@ -76,7 +76,14 @@ class Program:
     def save_meadia(self):  # Сохранение всех данных в одку папку
         global new_folder_path
         while True:
-            parser.download_images(browser, new_folder_path)
+            from vk.parser import wh
+            if wh == False:
+                break
+            else:
+                print(wh)
+                parser.download_images(browser, new_folder_path)
+        print("aaa")
+
 
     def end_program(self):  # Условие и выход из программы
         pass
