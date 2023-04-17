@@ -52,7 +52,7 @@ class Parser:
             actions = ActionChains(browser)
 
             actions.move_to_element(post).perform()
-            time.sleep(2)
+            time.sleep(4)
 
         browser.execute_script("window.scrollBy(0, 2000)")
         self.download_images(browser, path)
