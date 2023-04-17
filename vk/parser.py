@@ -68,6 +68,6 @@ class Parser:
                 actions.move_to_element(post).perform()
                 time.sleep(3)
 
-            browser.execute_script("window.scrollBy(0, 2000)")
+            browser.execute_script("window.scrollBy(0, 4000)")
         except Exception:
             wh = wh + 1

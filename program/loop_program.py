@@ -76,7 +76,7 @@ class Program:
         global new_folder_path
         while True:
             from vk.parser import wh
-            if wh >= 3:
+            if wh >= 10:
                 break
             else:
                 print(wh)
