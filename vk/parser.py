@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import time
 import requests
 import urllib.request
+
 #
 # from program.loop_program import browser, new_folder_path
 
@@ -28,7 +29,7 @@ class Parser:
         browser.get('https://vk.com/feed')
 
         # Ждем 30 секунд
-        time.sleep(1)
+        time.sleep(25)
 
         browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
         WebDriverWait(browser, 5).until(EC.presence_of_element_located(
