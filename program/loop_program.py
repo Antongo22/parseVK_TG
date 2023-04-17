@@ -26,7 +26,6 @@ class Program:
     def open_site(self):
         parser.open_site(browser, graf)
 
-
     def ceate_folder(self, folder_name, path):  # Создание папки для скачивания
         import os
         self.folder_name = folder_name
@@ -83,7 +82,6 @@ class Program:
                 print(wh)
                 parser.download_images(browser, new_folder_path)
         print("aaa")
-
 
     def end_program(self):  # Условие и выход из программы
         pass
