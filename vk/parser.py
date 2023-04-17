@@ -4,8 +4,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 import time
 import requests
 import urllib.request
-
-from program.loop_program import browser, new_folder_path
+#
+# from program.loop_program import browser, new_folder_path
 
 # url = "https://vk.com/"
 # response = requests.get(url)
@@ -60,9 +60,5 @@ class Parser:
             time.sleep(3)
 
         browser.execute_script("window.scrollBy(0, 2000)")
-        global tr
-        tr = True
 
-    while True:
-        if tr == True:
-            download_images(browser, new_folder_path)
+
