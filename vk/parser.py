@@ -52,8 +52,10 @@ class Parser:
         last_posts += posts
         posts = posts2
 
+        # Переменная для названия файлов
         global count
 
+        # Прохождение по картинкам и их скачивание
         for post in posts:
 
             # Скачивание картинки
@@ -69,5 +71,4 @@ class Parser:
 
         # Доп скрол
         browser.execute_script("window.scrollBy(0, 2000)")
-
 
