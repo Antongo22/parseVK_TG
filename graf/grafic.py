@@ -7,7 +7,7 @@ import requests
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
 service = None  # переменная для определения типа сервиса
-
+flag_save = False
 
 # Класс графики
 class Window:
@@ -46,7 +46,7 @@ class Window:
                 save_button.grid(row=3, column=1, sticky="se", padx=0, pady=100)
 
             except:
-                print("Это не подходящая ссылка!")
+                print("Это не подходящая ссылка!\nЕсли вы хотите использовать facebook, не забудьте включить VPN!")
 
         def save():  # Сохранение ссылки
             global service
@@ -61,28 +61,41 @@ class Window:
 
             elif re.search("telegram|tg", reference):
                 service = "tg"
+
+            elif re.search("facebook", reference):
+                service = "fb"
+
             else:
-                print("Ссылка не содержит vk или telegram/tg")
+                print("Ссылка не содержит vk/facebook или telegram/tg")
                 return
 
             done_save(service, reference)
 
+        # Открытие главного окна
         window = Tk()
         window.title("Парсер ВК и ТГ")
         window.geometry('690x240')
 
+        # Текстовое окно
         label = Label(text=" Введите путь к  папке, куда будем выгружат:")
         label.grid(row=0, column=0, sticky="sw")
+
+        # Кнопка, открывающая путь к папке
         open_button = tk.Button(text="Открыть", command=open_folder_dialog)
         open_button.grid(row=0, column=1)
 
+        # Текстовое окно
         label = Label(text=" Вставьте ссылку на группу:")
         label.grid(row=1, column=0, sticky="sw")
+
+        # Поле для ссылки
         message_text = Text(window, width=52, height=1, wrap=WORD)
         message_text.grid(row=1, column=1)
 
+
+
         save_button = tk.Button(text="Сохранить", command=save)
-        save_button.grid(row=2, column=1, padx=0, pady=10)
+        save_button.grid(row=3, column=1, padx=0, pady=10)
 
         window.mainloop()
 
