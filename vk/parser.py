@@ -41,9 +41,13 @@ class Parser:
 
         # WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH,
         #                                                                 "//a[@class='wall_text']//img")))
+
+        # Загружаем посты с изображениями
         posts = browser.find_elements(By.XPATH,
                                       "//div[@class='MediaGridContainerWeb--post']//img")
         print(posts)
+
+        # Отсоединение уже скачанных постов от не
         posts2 = [i for i in posts if i not in last_posts]
         last_posts += posts
         posts = posts2
@@ -51,14 +55,19 @@ class Parser:
         global count
 
         for post in posts:
+
+            # Скачивание картинки
             urllib.request.urlretrieve(str(post.get_attribute("src")), str(path) + f"/{str(count)}.jpg")
             count += 1
             actions = ActionChains(browser)
             time.sleep(2)
+
+            # Скрол к картинке
             browser.execute_script("window.scrollBy(0, 300)")
             actions.move_to_element(post).perform()
             time.sleep(3)
 
+        # Доп скрол
         browser.execute_script("window.scrollBy(0, 2000)")
 
 

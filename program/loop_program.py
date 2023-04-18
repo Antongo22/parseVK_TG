@@ -23,7 +23,7 @@ parser = Parser()
 
 # Класс выполнения программы
 class Program:
-    def open_site(self):
+    def open_site(self): # Открытие окна и вход в ВК
         parser.open_site(browser, graf)
 
 
@@ -75,6 +75,8 @@ class Program:
 
     def save_meadia(self):  # Сохранение всех данных в одку папку
         global new_folder_path
+
+        # Постоянное обращение к парсеру
         while True:
             parser.download_images(browser, new_folder_path)
 
