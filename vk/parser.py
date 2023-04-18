@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import time
 import requests
 import urllib.request
+
 #
 # from program.loop_program import browser, new_folder_path
 
@@ -20,7 +21,6 @@ tr = False
 class Parser:
 
     def open_site(self, browser, graf):
-
         global new_name
         # Открываем вкладку с сайтом https://vk.com/feed
         browser.get('https://vk.com/feed')
@@ -57,7 +57,6 @@ class Parser:
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
-
             # Скачивание картинки
             urllib.request.urlretrieve(str(post.get_attribute("src")), str(path) + f"/{str(count)}.jpg")
             count += 1
@@ -71,4 +70,3 @@ class Parser:
 
         # Доп скрол
         browser.execute_script("window.scrollBy(0, 2000)")
-

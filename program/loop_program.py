@@ -78,7 +78,12 @@ class Program:
 
         # Постоянное обращение к парсеру
         while True:
-            parser.download_images(browser, new_folder_path)
+            try:
+                parser.download_images(browser, new_folder_path)
+            except Exception as e:
+                print(f"Произошла ошибка:\n{e}\n")
+                continue
+
 
     def end_program(self):  # Условие и выход из программы
         pass
