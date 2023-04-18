@@ -48,11 +48,13 @@ class Parser:
             #                                                                 "//a[@class='wall_text']//img")))
             posts = browser.find_elements(By.XPATH,
                                           "//div[@class='MediaGridContainerWeb--post']//img")
-            print(posts)
+
             print(wh)
             posts2 = [i for i in posts if i not in last_posts]
             last_posts += posts
             posts = posts2
+
+            print(posts)
 
             if posts == []:
                 raise Exception("Some exception")
