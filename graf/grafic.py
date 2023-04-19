@@ -54,10 +54,10 @@ class Window:
         def done_save(service, reference):  # подтверждение того, что сайт нормальный и можно запускать
             try:
                 response = requests.get(reference)  # HTML код
-                print(service)
+                print("Cервис - " + service)
                 print(reference)
                 # print(response.text) # вывод кода
-                print("\nДанные сайта успешно получены!")
+                print("\nДанные сайта успешно получены!\n")
                 save_button = tk.Button(text="Запустить", command=but_start)
                 save_button.grid(row=4, column=1, sticky="se", padx=0, pady=0)
 
@@ -150,3 +150,4 @@ class Window:
         # Вывод текста в текстовое окно
         info = tk.Label(window, text=f"Программа завершила свою работу!")
         info.grid()
+        window.mainloop()
