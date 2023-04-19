@@ -9,6 +9,7 @@ reference = None  # переменная для хранения ссылки н
 service = None  # переменная для определения типа сервиса
 flag_save = False
 
+
 # Класс графики
 class Window:
 
@@ -43,7 +44,9 @@ class Window:
                 # print(response.text) # вывод кода
                 print("\nДанные сайта успешно получены!")
                 save_button = tk.Button(text="Запустить", command=but_start)
-                save_button.grid(row=3, column=1, sticky="se", padx=0, pady=100)
+                save_button.grid(row=4, column=1, sticky="se", padx=0, pady=0)
+
+                show_flag()
 
             except:
                 print("Это не подходящая ссылка!\nЕсли вы хотите использовать facebook, не забудьте включить VPN!")
@@ -92,7 +95,29 @@ class Window:
         message_text = Text(window, width=52, height=1, wrap=WORD)
         message_text.grid(row=1, column=1)
 
+        def show_flag():
+            print("Флаг фото: ", chose_ph.get())
+            print("Флаг видео: ", chose_vid.get())
+            print("Флаг текста: ", chose_text.get())
 
+        # Выбор того, что скачиваем
+        chose_ph = tk.StringVar()
+        chose_ph.set("none")
+        chose_vid = tk.StringVar()
+        chose_vid.set("none")
+        chose_text = tk.StringVar()
+        chose_text.set("none")
+
+
+
+        save_ph = tk.Checkbutton(window, text="Скачивать фото", variable=chose_ph, onvalue="ph", offvalue="none")
+        save_ph.grid(row=2, column=0, sticky="nw")
+
+        save_vid = tk.Checkbutton(window, text="Скачивать видео", variable=chose_vid, onvalue="vid", offvalue="none")
+        save_vid.grid(row=3, column=0, sticky="w")
+
+        save_text = tk.Checkbutton(window, text="Скачивать текст", variable=chose_text, onvalue="text", offvalue="none")
+        save_text.grid(row=4, column=0, sticky="sw")
 
         save_button = tk.Button(text="Сохранить", command=save)
         save_button.grid(row=3, column=1, padx=0, pady=10)
