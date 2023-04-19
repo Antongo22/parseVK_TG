@@ -4,7 +4,6 @@ import tkinter as tk
 import re
 import requests
 
-# https://vk.com/aesthetic_tyann
 
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
@@ -48,7 +47,7 @@ class Window:
                 prog.open_site()
                 print("Сайт открыт")
                 prog.get_name()
-                prog.save_last_register_time()
+                # prog.save_last_register_time()
                 prog.save_meadia()
                 self.end()
 

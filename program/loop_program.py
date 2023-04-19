@@ -117,11 +117,19 @@ class Program:
 
         # Постоянное обращение к парсеру
         while True:
-            try:
-                parser.download_images(browser, new_folder_path)
-            except Exception as e:
-                print(f"Произошла ошибка:\n{e}\n")
-                continue
+            if graf.grafic.chose_ph.get() == "ph":
+                try:
+                    parser.download_images(browser, new_folder_path)
+                except Exception as e:
+                    print(f"Произошла ошибка:\n{e}\n")
+                    continue
+
+            if graf.grafic.chose_vid.get() == "vid":
+                print("Парсинг видео")
+
+            if graf.grafic.chose_text.get() == "text":
+                print("Парсинг текста")
+
 
     def end_program(self):  # Условие и выход из программы
         pass
