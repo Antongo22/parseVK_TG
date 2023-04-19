@@ -5,7 +5,13 @@ from selenium.webdriver.support.wait import WebDriverWait
 import graf.grafic
 from graf.grafic import Window
 from selenium import webdriver
-from vk.parser import Parser
+
+if graf.grafic.service == 'vk':
+    from vk.parser import Parser
+elif graf.grafic.service == 'tg':
+    from tg.parser import Parser
+elif graf.grafic.service == 'fb':
+    from facebook.parser import Parser
 
 window = Window()
 new_folder_path = None
@@ -15,8 +21,6 @@ driver_path = 'путь_к_файлу/chromedriver.exe'
 
 # Создаем экземпляр класса ChromeDriver
 browser = webdriver.Chrome(executable_path=driver_path)
-
-new_name = ""
 
 parser = Parser()
 
@@ -63,17 +67,25 @@ class Program:
 
         # Создаем файл и записываем в него текст
         with open(file_path, "w") as file:
-            file.write("Привет, мир!")
+            file.write("")
 
         print(f"Файл {txt_name} успешно создан в директории {path}")
 
     def get_name(self):  # Получение названия группы
         import os
-        from vk.parser import new_name
-        global new_folder_path
+
+        # Проверка на то, из какого сервиса мы берём всё
+        if graf.grafic.service == 'vk':
+            from vk.parser import new_name
+        elif graf.grafic.service == 'tg':
+            from tg.parser import new_name
+        elif graf.grafic.service == 'fb':
+            from facebook.parser import new_name
+
+        global new_folder_path, new_name
         new_name_txt = new_name + ".txt"
 
-        if graf.grafic.chose_ph.get() != "none" or graf.grafic.chose_vid.get() != "none":
+        if graf.grafic.chose_ph.get() != "none" or graf.grafic.chose_vid.get() != "none":  # Переименовывание папки в название группы
             # Запрашиваем у пользователя путь к папке
             folder_path = os.path.join(self.path, self.folder_name)
 
@@ -92,7 +104,7 @@ class Program:
             # Выводим сообщение об успешном переименовании папки
             print(f"Папка {folder_name} успешно переименована в {new_name}")
 
-        if graf.grafic.chose_text.get() != "none":
+        if graf.grafic.chose_text.get() != "none":  # Переименовывание файла в название группы
             file_path = os.path.join(self.path_t, self.txt_name)
 
             # Получение имени файла из пути
@@ -117,6 +129,11 @@ class Program:
 
         # Постоянное обращение к парсеру
         while True:
+            if graf.grafic.chose_vid.get() == "vid":
+                print("Парсинг видео")
+
+            if graf.grafic.chose_text.get() == "text":
+                print("Парсинг текста")
             if graf.grafic.chose_ph.get() == "ph":
                 try:
                     parser.download_images(browser, new_folder_path)
@@ -124,13 +141,6 @@ class Program:
                     print(f"Произошла ошибка:\n{e}\n")
                     continue
 
-            if graf.grafic.chose_vid.get() == "vid":
-                print("Парсинг видео")
-
-            if graf.grafic.chose_text.get() == "text":
-                print("Парсинг текста")
-
-
     def end_program(self):  # Условие и выход из программы
-        pass
+        print("Парснг завершён!")
         # Заверщение программы

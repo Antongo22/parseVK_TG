@@ -4,7 +4,6 @@ import tkinter as tk
 import re
 import requests
 
-
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
 service = None  # переменная для определения типа сервиса
@@ -22,6 +21,7 @@ class Window:
         def open_folder_dialog():  # Выбор папки, куда будем сохранять
             global selected_folder_path
             folder_path = filedialog.askdirectory()
+
             if folder_path:
                 selected_folder_path = folder_path
                 print(selected_folder_path)
@@ -30,9 +30,9 @@ class Window:
 
         def but_start():  # Запуск бота
 
-            if chose_ph.get() != "ph" and chose_vid.get() != "vid" and chose_text.get() != "text" or selected_folder_path == None:
+            if chose_ph.get() != "ph" and chose_vid.get() != "vid" and chose_text.get() != "text" or selected_folder_path == None:  # Условия для дебилов
                 print("Нет инфы")
-                self.end()
+                self.error()
                 return
 
             else:
@@ -149,5 +149,15 @@ class Window:
 
         # Вывод текста в текстовое окно
         info = tk.Label(window, text=f"Программа завершила свою работу!")
+        info.grid()
+        window.mainloop()
+
+    def error(self):  # Окно ошибки
+        window = Tk()
+        window.title("Парсер ВК и ТГ")
+        window.geometry('260x60')
+
+        # Вывод текста в текстовое окно
+        info = tk.Label(window, text=f"Вы ввели не корректныйе или не все данные!\nПовторите попытку!")
         info.grid()
         window.mainloop()
