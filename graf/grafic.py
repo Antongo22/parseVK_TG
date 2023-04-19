@@ -4,10 +4,15 @@ import tkinter as tk
 import re
 import requests
 
+# https://vk.com/aesthetic_tyann
+
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
 service = None  # переменная для определения типа сервиса
 flag_save = False
+chose_ph = None
+chose_vid = None
+chose_text = None
 
 
 # Класс графики
@@ -26,15 +31,26 @@ class Window:
 
         def but_start():  # Запуск бота
 
-            from program.loop_program import Program
+            if chose_ph.get() != "ph" and chose_vid.get() != "vid" and chose_text.get() != "text" or selected_folder_path == None:
+                print("Нет инфы")
+                self.end()
+                return
 
-            prog = Program()
-            prog.ceate_folder("тестовая папка", selected_folder_path)
-            prog.open_site()
-            prog.get_name()
-            prog.save_last_register_time()
-            prog.save_meadia()
-            self.end()
+            else:
+                from program.loop_program import Program
+                prog = Program()
+
+                if chose_ph.get() != "none" or chose_vid.get() != "none":
+                    prog.ceate_folder("тестовая папка", selected_folder_path)
+                if chose_text.get() != "none":
+                    prog.create_txt("текстовый файл", selected_folder_path)
+
+                prog.open_site()
+                print("Сайт открыт")
+                prog.get_name()
+                prog.save_last_register_time()
+                prog.save_meadia()
+                self.end()
 
         def done_save(service, reference):  # подтверждение того, что сайт нормальный и можно запускать
             try:
@@ -101,14 +117,17 @@ class Window:
             print("Флаг текста: ", chose_text.get())
 
         # Выбор того, что скачиваем
+
+        global chose_ph
+        global chose_vid
+        global chose_text
+
         chose_ph = tk.StringVar()
         chose_ph.set("none")
         chose_vid = tk.StringVar()
         chose_vid.set("none")
         chose_text = tk.StringVar()
         chose_text.set("none")
-
-
 
         save_ph = tk.Checkbutton(window, text="Скачивать фото", variable=chose_ph, onvalue="ph", offvalue="none")
         save_ph.grid(row=2, column=0, sticky="nw")
