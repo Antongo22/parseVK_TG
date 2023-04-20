@@ -155,7 +155,7 @@ class Program:
                     parser.download_images(browser, new_folder_path)
                     print("Парсинг фото\n")
                 except Exception as e:
-                    print(f"Произошла ошибка:\n{e}\n")
+                    print(f"\nПроизошла ошибка:\n{e}\n\n")
                     continue
 
     def end_program(self):  # Условие и выход из программы

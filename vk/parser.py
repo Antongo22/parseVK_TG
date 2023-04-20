@@ -83,7 +83,7 @@ class Parser:
         # Загружаем посты с изображениями
         posts = browser.find_elements(By.XPATH,
                                       "//div[@class='wall_post_text']")
-        print(posts)
+        print(posts + "\n")
 
         # Отсоединение уже скачанных постов от не
         posts2 = [i for i in posts if i not in last_posts]
