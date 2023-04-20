@@ -95,7 +95,7 @@ class Program:
             from facebook.parser import new_name
 
         global new_folder_path, new_name, new_file_path
-        new_name_txt = new_name + ".txt"
+        __new_name_txt = new_name + ".txt"
 
         if graf.grafic.chose_ph.get() != "none" or graf.grafic.chose_vid.get() != "none":  # Переименовывание папки в название группы
             # Запрашиваем у пользователя путь к папке
@@ -125,12 +125,12 @@ class Program:
             dir_path = os.path.dirname(file_path)
 
             # Составление нового пути с новым именем файла
-            new_file_path = os.path.join(dir_path, new_name_txt)
+            new_file_path = os.path.join(dir_path, __new_name_txt)
 
             # Переименование файла
             os.rename(file_path, new_file_path)
 
-            print(f"Файл {file_name} переименован в {new_name_txt}")
+            print(f"Файл {file_name} переименован в {__new_name_txt}")
 
     def save_last_register_time(self):  # Запись в базу данных запись, с которолй началась выгрзка
         pass
