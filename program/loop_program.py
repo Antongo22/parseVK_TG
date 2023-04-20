@@ -21,8 +21,10 @@ elif graf.grafic.service == 'fb':
 # создаё экземпляр класса Parser
 parser = Parser()
 
-# Переменная, которая хранит путь к файлам сохранения
+# Переменная, которая хранит путь к папке сохранения
 new_folder_path = None
+# Переменная, которая хранит путь к файлу сохранения
+new_file_path = None
 
 # Указываем путь к chromedriver.exe
 driver_path = 'путь_к_файлу/chromedriver.exe'
@@ -92,7 +94,7 @@ class Program:
         elif graf.grafic.service == 'fb':
             from facebook.parser import new_name
 
-        global new_folder_path, new_name
+        global new_folder_path, new_name, new_file_path
         new_name_txt = new_name + ".txt"
 
         if graf.grafic.chose_ph.get() != "none" or graf.grafic.chose_vid.get() != "none":  # Переименовывание папки в название группы
