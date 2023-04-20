@@ -1,4 +1,9 @@
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 import graf.grafic
+from graf.grafic import Window
 from selenium import webdriver
 import os
 

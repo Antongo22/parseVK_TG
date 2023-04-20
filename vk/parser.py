@@ -70,3 +70,90 @@ class Parser:
 
         # Доп скрол
         browser.execute_script("window.scrollBy(0, 2000)")
+
+    def download_text(self, browser, path):
+        global last_posts
+        from selenium.webdriver.common.action_chains import ActionChains
+        # Открываем вкладку с сайтом https://vk.com/...
+        time.sleep(3)
+
+        # WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH,
+        #                                                                 "//a[@class='wall_text']//img")))
+
+        # Загружаем посты с изображениями
+        posts = browser.find_elements(By.XPATH,
+                                      "//div[@class='wall_post_text']")
+        print(posts)
+
+        # Отсоединение уже скачанных постов от не
+        posts2 = [i for i in posts if i not in last_posts]
+        last_posts += posts
+        posts = posts2
+
+        # Переменная для названия файлов
+        global count
+
+        # Прохождение по картинкам и их скачивание
+        for post in posts:
+            # Скачивание картинки
+
+            file = open(str(path))
+            file.write(f"{str(count)}\n" + str(post.text) + "\n\n")
+
+            count += 1
+            actions = ActionChains(browser)
+            time.sleep(2)
+
+            # Скрол к картинке
+            browser.execute_script("window.scrollBy(0, 300)")
+            actions.move_to_element(post).perform()
+            time.sleep(3)
+
+        # Доп скрол
+        browser.execute_script("window.scrollBy(0, 2000)")
+
+    def download_videos(self, browser, path):
+        global last_posts
+        from selenium.webdriver.common.action_chains import ActionChains
+        # Открываем вкладку с сайтом https://vk.com/...
+        time.sleep(3)
+
+        # WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH,
+        #                                                                 "//a[@class='wall_text']//img")))
+
+        # Загружаем посты с изображениями
+        posts = browser.find_elements(By.XPATH,
+                                      "//div[@class='page_post_sized_thumbs  clear_fix']//a")
+        print(posts)
+
+        # Отсоединение уже скачанных постов от не
+        posts2 = [i for i in posts if i not in last_posts]
+        last_posts += posts
+        posts = posts2
+
+        # Переменная для названия файлов
+        global count
+
+        # Прохождение по картинкам и их скачивание
+        for post in posts:
+            # Скачивание картинки
+            # urllib.request.urlretrieve(str(post.get_attribute("href")), str(path) + f"/{str(count)}.mp4")
+            # print(str(post.get_attribute("href")))
+
+            import youtube_dl
+
+            ydl_opts = {}
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([str(post.get_attribute("href"))])
+
+            count += 1
+            actions = ActionChains(browser)
+            time.sleep(2)
+
+            # Скрол к картинке
+            browser.execute_script("window.scrollBy(0, 300)")
+            actions.move_to_element(post).perform()
+            time.sleep(3)
+
+        # Доп скрол
+        browser.execute_script("window.scrollBy(0, 2000)")
