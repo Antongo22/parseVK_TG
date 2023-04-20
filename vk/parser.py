@@ -14,7 +14,9 @@ import urllib.request
 
 new_name = ""
 last_posts = []
-count = 0
+count_p = 0
+count_p_t = 0
+count_v = 0
 tr = False
 
 
@@ -53,13 +55,13 @@ class Parser:
         posts = posts2
 
         # Переменная для названия файлов
-        global count
+        global count_p
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
             # Скачивание картинки
-            urllib.request.urlretrieve(str(post.get_attribute("src")), str(path) + f"/{str(count)}.jpg")
-            count += 1
+            urllib.request.urlretrieve(str(post.get_attribute("src")), str(path) + f"/{str(count_p)}.jpg")
+            count_p += 1
             actions = ActionChains(browser)
             time.sleep(2)
 
@@ -91,7 +93,7 @@ class Parser:
         posts = posts2
 
         # Переменная для названия файлов
-        global count
+        global count_p_t
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
@@ -103,11 +105,11 @@ class Parser:
             print(str(path))
 
             print(str(post.text))
-            # f"{str(count)}\n" + str(post.text) + "\n\n"
+            # f"{str(count_p)}\n" + str(post.text) + "\n\n"
 
-            f.write(f"{str(count)}\n" + str(post.text) + "\n\n")
+            f.write(f"{str(count_p_t)}\n" + str(post.text) + "\n\n")
 
-            count += 1
+            count_p_t += 1
             actions = ActionChains(browser)
             time.sleep(2)
 
@@ -139,12 +141,12 @@ class Parser:
         posts = posts2
 
         # Переменная для названия файлов
-        global count
+        global count_v
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
             # Скачивание картинки
-            # urllib.request.urlretrieve(str(post.get_attribute("href")), str(path) + f"/{str(count)}.mp4")
+            # urllib.request.urlretrieve(str(post.get_attribute("href")), str(path) + f"/{str(count_p)}.mp4")
             # print(str(post.get_attribute("href")))
 
             import youtube_dl
@@ -153,7 +155,7 @@ class Parser:
             with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([str(post.get_attribute("href"))])
 
-            count += 1
+            count_v += 1
             actions = ActionChains(browser)
             time.sleep(2)
 
