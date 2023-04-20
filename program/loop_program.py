@@ -2,6 +2,8 @@ import graf.grafic
 from selenium import webdriver
 import os
 
+import vk.parser
+
 # Создаём экземпляр класса Window
 window = graf.grafic.Window()
 
@@ -24,17 +26,11 @@ file = None  # Переменная для файла
 
 new_name = None  # переменная нового имени для файла
 
-# Указываем путь к chromedriver.exe
-driver_path = 'путь_к_файлу/chromedriver.exe'
-
-# Создаем экземпляр класса ChromeDriver
-browser = webdriver.Chrome(executable_path=driver_path)
-
 
 # Класс выполнения программы
 class Program:
 
-    def open_site(self):  # Открытие окна и вход в ВК
+    def open_site(self, browser):  # Открытие окна и вход в ВК
         parser.open_site(browser, graf)
         print()
 
@@ -155,7 +151,7 @@ class Program:
     def save_last_register_time(self):  # Запись в базу данных запись, с которолй началась выгрзка
         pass
 
-    def save_meadia(self):  # Сохранение всех данных в одку папку
+    def save_meadia(self, browser):  # Сохранение всех данных в одку папку
         global new_folder_path
 
         # Постоянное обращение к парсеру
@@ -180,6 +176,10 @@ class Program:
                     print(f"\nПроизошла ошибка:\n{e}\n\n")
                     continue
 
+            # Если нет данных, то он останавливает
+            if not vk.parser.posts:
+                break
+        print("Программа завершила работу!")
     def end_program(self):  # Условие и выход из программы
         print("Парснг завершён!")
         # Заверщение программы

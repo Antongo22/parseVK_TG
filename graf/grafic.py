@@ -1,8 +1,10 @@
+import time
 from tkinter import *
 from tkinter import filedialog
 import tkinter as tk
 import re
 import requests
+from selenium import webdriver
 
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
@@ -10,6 +12,7 @@ service = None  # переменная для определения типа с
 chose_ph = None  # переменная для состояния данных о фото
 chose_vid = None  # переменная для состояния данных о видео
 chose_text = None  # переменная для состояния данных о текст
+
 
 
 # Класс графики
@@ -28,7 +31,7 @@ class Window:
                 selected_folder_path = None
 
         def but_start():  # Запуск бота
-
+            global browser
             # Обработка того, что пользователь ввёл не все данные
             if chose_ph.get() != "ph" and chose_vid.get() != "vid" and chose_text.get() != "text" or selected_folder_path == None:  # Условия для дебилов
                 print("Нет инфы")
@@ -37,6 +40,11 @@ class Window:
 
             # Если всё хорошо, то программа запустится
             else:
+                # Указываем путь к chromedriver.exe
+                driver_path = 'путь_к_файлу/chromedriver.exe'
+                # Создаем экземпляр класса ChromeDriver
+                browser = webdriver.Chrome(executable_path=driver_path)
+
                 from program.loop_program import Program
 
                 # Создание экземпяра класса
@@ -48,7 +56,7 @@ class Window:
                 if chose_text.get() != "none":
                     prog.create_txt("тестовый файл", selected_folder_path)
 
-                prog.open_site()
+                prog.open_site(browser)
                 print("Сайт открыт")
 
                 # Переименовывание фалоов
@@ -58,7 +66,7 @@ class Window:
                 # prog.save_last_register_time()
 
                 # Вызов сохранения данных
-                prog.save_meadia()
+                prog.save_meadia(browser)
 
                 # Уведомление о концце программы
                 self.end()

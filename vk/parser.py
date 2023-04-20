@@ -4,8 +4,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 import time
 import requests
 import urllib.request
+from selenium import webdriver
 
-#
+
 # from program.loop_program import browser, new_folder_path
 
 # url = "https://vk.com/"
@@ -15,17 +16,23 @@ import urllib.request
 new_name = ""
 last_posts = []
 count_p = 0
-count_p_t = 0
+count_t = 0
 count_v = 0
 tr = False
+posts = []
 
 
 class Parser:
 
     def open_site(self, browser, graf):
+
         global new_name
         # Открываем вкладку с сайтом https://vk.com/feed
+        options = webdriver.ChromeOptions()
+        options.headless = True
+
         browser.get('https://vk.com/feed')
+
 
         # Ждем 30 секунд
         time.sleep(30)
@@ -36,7 +43,10 @@ class Parser:
         new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
 
     def download_images(self, browser, path):  # метод, скачивающий картинки
-        global last_posts
+
+
+
+        global last_posts, posts
         from selenium.webdriver.common.action_chains import ActionChains
         # Открываем вкладку с сайтом https://vk.com/...
         time.sleep(3)
@@ -93,7 +103,7 @@ class Parser:
         posts = posts2
 
         # Переменная для названия файлов
-        global count_p_t
+        global count_t
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
@@ -107,9 +117,9 @@ class Parser:
             print(str(post.text))
             # f"{str(count_p)}\n" + str(post.text) + "\n\n"
 
-            file.write(f"{str(count_p_t)}\n" + str(post.text) + "\n\n")
+            file.write(f"{str(count_t)}\n" + str(post.text) + "\n\n")
 
-            count_p_t += 1
+            count_t += 1
             actions = ActionChains(browser)
             time.sleep(2)
 
