@@ -143,10 +143,12 @@ class Program:
 
             # Парсинг фото
             if graf.grafic.chose_vid.get() == "vid":
+                parser.download_videos(browser, new_folder_path)
                 print("Парсинг видео\n")
 
             # Парсинг фото
             if graf.grafic.chose_text.get() == "text":
+                parser.download_text(browser, new_file_path)
                 print("Парсинг текста\n")
 
             # Парсинг фото

@@ -5,6 +5,7 @@ import time
 import requests
 import urllib.request
 
+
 #
 # from program.loop_program import browser, new_folder_path
 
@@ -83,7 +84,7 @@ class Parser:
         # Загружаем посты с изображениями
         posts = browser.find_elements(By.XPATH,
                                       "//div[@class='wall_post_text']")
-        print(posts + "\n")
+        print(posts)
 
         # Отсоединение уже скачанных постов от не
         posts2 = [i for i in posts if i not in last_posts]
@@ -95,10 +96,17 @@ class Parser:
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
+            from program.loop_program import new_file_path
             # Скачивание картинки
 
-            file = open(str(path))
-            file.write(f"{str(count)}\n" + str(post.text) + "\n\n")
+            f = open(new_file_path, "a")
+
+            print(str(path))
+
+            print(str(post.text))
+            # f"{str(count)}\n" + str(post.text) + "\n\n"
+
+            f.write(f"{str(count)}\n" + str(post.text) + "\n\n")
 
             count += 1
             actions = ActionChains(browser)
