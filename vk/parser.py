@@ -60,7 +60,7 @@ class Parser:
         # Прохождение по картинкам и их скачивание
         for post in posts:
             # Скачивание картинки
-            urllib.request.urlretrieve(str(post.get_attribute("src")), str(path) + f"/{str(count_p)}.jpg")
+            urllib.request.urlretrieve(str(post.get_attribute("src")), str(path) + f"/{str(count_p)}_photo.jpg")
             count_p += 1
             actions = ActionChains(browser)
             time.sleep(2)
@@ -100,14 +100,14 @@ class Parser:
             from program.loop_program import new_file_path
             # Скачивание картинки
 
-            f = open(new_file_path, "a")
+            file = open(new_file_path, "a")
 
             print(str(path))
 
             print(str(post.text))
             # f"{str(count_p)}\n" + str(post.text) + "\n\n"
 
-            f.write(f"{str(count_p_t)}\n" + str(post.text) + "\n\n")
+            file.write(f"{str(count_p_t)}\n" + str(post.text) + "\n\n")
 
             count_p_t += 1
             actions = ActionChains(browser)
@@ -143,7 +143,7 @@ class Parser:
         # Переменная для названия файлов
         global count_v
 
-        # Прохождение по картинкам и их скачивание
+        # Прохождение по видео и их скачивание
         for post in posts:
             # Скачивание картинки
             # urllib.request.urlretrieve(str(post.get_attribute("href")), str(path) + f"/{str(count_p)}.mp4")
