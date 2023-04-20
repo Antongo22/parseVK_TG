@@ -1,7 +1,3 @@
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-
 import graf.grafic
 from selenium import webdriver
 import os
@@ -25,6 +21,8 @@ new_folder_path = None  # Переменная, которая хранит пу
 new_file_path = None  # Переменная, которая хранит путь к файлу сохранения
 
 file = None  # Переменная для файла
+
+new_name = None
 
 # Указываем путь к chromedriver.exe
 driver_path = 'путь_к_файлу/chromedriver.exe'
