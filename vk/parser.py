@@ -5,7 +5,6 @@ import time
 import requests
 import urllib.request
 
-
 #
 # from program.loop_program import browser, new_folder_path
 
@@ -34,7 +33,7 @@ class Parser:
             (By.XPATH, "//h1[@class='page_name']")))
         new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
 
-    def download_images(self, browser, path):
+    def download_images(self, browser, path):  # метод, скачивающий картинки
         global last_posts
         from selenium.webdriver.common.action_chains import ActionChains
         # Открываем вкладку с сайтом https://vk.com/...
@@ -72,7 +71,7 @@ class Parser:
         # Доп скрол
         browser.execute_script("window.scrollBy(0, 2000)")
 
-    def download_text(self, browser, path):
+    def download_text(self, browser, path):  # Метод, скачивающий текст
         global last_posts
         from selenium.webdriver.common.action_chains import ActionChains
         # Открываем вкладку с сайтом https://vk.com/...
