@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 import graf.grafic
-from graf.grafic import Window
 from selenium import webdriver
 import os
 
@@ -23,6 +22,7 @@ parser = Parser()
 
 # Переменная, которая хранит путь к папке сохранения
 new_folder_path = None
+
 # Переменная, которая хранит путь к файлу сохранения
 new_file_path = None
 
