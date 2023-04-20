@@ -22,7 +22,7 @@ new_file_path = None  # Переменная, которая хранит пут
 
 file = None  # Переменная для файла
 
-new_name = None # переменная нового имени для файла
+new_name = None  # переменная нового имени для файла
 
 # Указываем путь к chromedriver.exe
 driver_path = 'путь_к_файлу/chromedriver.exe'
@@ -36,6 +36,7 @@ class Program:
 
     def open_site(self):  # Открытие окна и вход в ВК
         parser.open_site(browser, graf)
+        print()
 
     def ceate_folder(self, folder_name, path):  # Создание папки для скачивания
         self.__path = path
@@ -92,43 +93,64 @@ class Program:
         elif graf.grafic.service == 'fb':
             from facebook.parser import new_name
 
-        global new_folder_path, new_name, new_file_path
+        global new_folder_path, new_name, new_file_path, folder_path
         __new_name_txt = new_name + ".txt"
 
         if graf.grafic.chose_ph.get() != "none" or graf.grafic.chose_vid.get() != "none":  # Переименовывание папки в название группы
-            # Запрашиваем у пользователя путь к папке
-            folder_path = os.path.join(self.__path, self.__folder_name)
+            try:
+                # Запрашиваем у пользователя путь к папке
+                folder_path = os.path.join(self.__path, self.__folder_name)
 
-            # Получаем имя папки из полного пути
-            __folder_name = os.path.basename(folder_path)
+                # Получаем имя папки из полного пути
+                __folder_name = os.path.basename(folder_path)
 
-            # Получаем путь к родительской папке
-            __parent_folder_path = os.path.dirname(folder_path)
+                # Получаем путь к родительской папке
+                __parent_folder_path = os.path.dirname(folder_path)
 
-            # Составляем новый путь к папке с новым именем
-            new_folder_path = os.path.join(__parent_folder_path, new_name)
+                # Составляем новый путь к папке с новым именем
+                new_folder_path = os.path.join(__parent_folder_path, new_name)
 
-            # Переименовываем папку
-            os.rename(folder_path, new_folder_path)
+                # Переименовываем папку
+                os.rename(folder_path, new_folder_path)
 
-            # Выводим сообщение об успешном переименовании папки
-            print(f"Папка {__folder_name} успешно переименована в {new_name}")
+                # Выводим сообщение об успешном переименовании папки
+                print(f"Папка {__folder_name} успешно переименована в {new_name}")
+            except:
+                print(
+                    f"Папка {new_name} уже существует! Всё будет перезаписано в старую практику, а тестовая будет удалена!")
+
+                # Удаление тестовой папки
+                try:
+                    os.rmdir(folder_path)
+                    print(f"Папка '{folder_path}' успешно удалена.")
+                except OSError as e:
+                    print(f"Удаление папки '{folder_path}' не удалось: {e}")
 
         if graf.grafic.chose_text.get() != "none":  # Переименовывание файла в название группы
 
-            # Получение имени файла из пути
-            file_name = os.path.basename(file_path)
+            try:
+                # Получение имени файла из пути
+                file_name = os.path.basename(file_path)
 
-            # Получение пути к файлу без имени файла
-            dir_path = os.path.dirname(file_path)
+                # Получение пути к файлу без имени файла
+                dir_path = os.path.dirname(file_path)
 
-            # Составление нового пути с новым именем файла
-            new_file_path = os.path.join(dir_path, __new_name_txt)
+                # Составление нового пути с новым именем файла
+                new_file_path = os.path.join(dir_path, __new_name_txt)
 
-            # Переименование файла
-            os.rename(file_path, new_file_path)
+                # Переименование файла
+                os.rename(file_path, new_file_path)
 
-            print(f"Файл {file_name} переименован в {__new_name_txt}")
+                print(f"Файл {file_name} переименован в {__new_name_txt}")
+            except:
+                print(f"Файл {__new_name_txt} уже существует!")
+
+                # Удаление тестовой папки
+                try:
+                    os.remove(file_path)
+                    print(f"Файл '{file_path}' успешно удален.")
+                except OSError as e:
+                    print(f"Удаление файла '{file_path}' не удалось: {e}")
 
     def save_last_register_time(self):  # Запись в базу данных запись, с которолй началась выгрзка
         pass

@@ -46,7 +46,7 @@ class Window:
                 if chose_ph.get() != "none" or chose_vid.get() != "none":
                     prog.ceate_folder("тестовая папка", selected_folder_path)
                 if chose_text.get() != "none":
-                    prog.create_txt("текстовый файл", selected_folder_path)
+                    prog.create_txt("тестовый файл", selected_folder_path)
 
                 prog.open_site()
                 print("Сайт открыт")
