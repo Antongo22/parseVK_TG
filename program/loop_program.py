@@ -164,7 +164,7 @@ class Program:
                     print("Сессия парсинга фото завершена! \n")
                 except Exception as e:
                     print(f"\nПроизошла ошибка в фото:\n{e}\n\n")
-                    error +=1
+                    error += 1
                     continue
 
             # Парсинг текста
