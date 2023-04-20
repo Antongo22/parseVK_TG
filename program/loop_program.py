@@ -22,7 +22,7 @@ new_file_path = None  # Переменная, которая хранит пут
 
 file = None  # Переменная для файла
 
-new_name = None
+new_name = None # переменная нового имени для файла
 
 # Указываем путь к chromedriver.exe
 driver_path = 'путь_к_файлу/chromedriver.exe'
