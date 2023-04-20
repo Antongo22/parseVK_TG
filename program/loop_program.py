@@ -129,11 +129,16 @@ class Program:
 
         # Постоянное обращение к парсеру
         while True:
+
+            # Парсинг фото
             if graf.grafic.chose_vid.get() == "vid":
                 print("Парсинг видео")
 
+            # Парсинг фото
             if graf.grafic.chose_text.get() == "text":
                 print("Парсинг текста")
+
+            # Парсинг фото
             if graf.grafic.chose_ph.get() == "ph":
                 try:
                     parser.download_images(browser, new_folder_path)
