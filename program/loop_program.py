@@ -20,11 +20,11 @@ elif graf.grafic.service == 'fb':
 # создаё экземпляр класса Parser
 parser = Parser()
 
-# Переменная, которая хранит путь к папке сохранения
-new_folder_path = None
+new_folder_path = None  # Переменная, которая хранит путь к папке сохранения
 
-# Переменная, которая хранит путь к файлу сохранения
-new_file_path = None
+new_file_path = None  # Переменная, которая хранит путь к файлу сохранения
+
+file = None  # Переменная для файла
 
 # Указываем путь к chromedriver.exe
 driver_path = 'путь_к_файлу/chromedriver.exe'
@@ -60,6 +60,7 @@ class Program:
             window.error(f"Не удалось создать папку '{folder_name}' в папке '{path}': {error}")
 
     def create_txt(self, txt_name, path):
+        global file  # Переменная для файла
 
         global file_path  # Переменная для хранения пути к файлам
 
