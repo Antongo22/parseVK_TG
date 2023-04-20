@@ -68,6 +68,8 @@ class Window:
                 # Вызов сохранения данных
                 prog.save_meadia(browser)
 
+                prog.end_program(browser)
+
                 # Уведомление о концце программы
                 self.end()
 

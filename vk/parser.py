@@ -6,7 +6,6 @@ import requests
 import urllib.request
 from selenium import webdriver
 
-
 # from program.loop_program import browser, new_folder_path
 
 # url = "https://vk.com/"
@@ -33,7 +32,6 @@ class Parser:
 
         browser.get('https://vk.com/feed')
 
-
         # Ждем 30 секунд
         time.sleep(30)
 
@@ -43,8 +41,6 @@ class Parser:
         new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
 
     def download_images(self, browser, path):  # метод, скачивающий картинки
-
-
 
         global last_posts, posts
         from selenium.webdriver.common.action_chains import ActionChains
@@ -66,6 +62,8 @@ class Parser:
 
         # Переменная для названия файлов
         global count_p
+
+        print(f"Загружено постов с фото - {len(posts)} ")
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
@@ -105,6 +103,7 @@ class Parser:
         # Переменная для названия файлов
         global count_t
 
+        print(f"Загружено постов с текстом - {len(posts)} ")
         # Прохождение по картинкам и их скачивание
         for post in posts:
             from program.loop_program import new_file_path
@@ -112,9 +111,9 @@ class Parser:
 
             file = open(new_file_path, "a")
 
-            print(str(path))
+            # print(str(path))
 
-            print(str(post.text))
+            # print(str(post.text))
             # f"{str(count_p)}\n" + str(post.text) + "\n\n"
 
             file.write(f"{str(count_t)}\n" + str(post.text) + "\n\n")
@@ -153,6 +152,7 @@ class Parser:
         # Переменная для названия файлов
         global count_v
 
+        print(f"Загружено постов с вилео - {len(posts)} ")
         # Прохождение по видео и их скачивание
         for post in posts:
             # Скачивание картинки

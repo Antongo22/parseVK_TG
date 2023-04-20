@@ -126,18 +126,18 @@ class Program:
 
             try:
                 # Получение имени файла из пути
-                file_name = os.path.basename(file_path)
+                __file_name = os.path.basename(file_path)
 
                 # Получение пути к файлу без имени файла
-                dir_path = os.path.dirname(file_path)
+                __dir_path = os.path.dirname(file_path)
 
                 # Составление нового пути с новым именем файла
-                new_file_path = os.path.join(dir_path, __new_name_txt)
+                new_file_path = os.path.join(__dir_path, __new_name_txt)
 
                 # Переименование файла
                 os.rename(file_path, new_file_path)
 
-                print(f"Файл {file_name} переименован в {__new_name_txt}")
+                print(f"Файл {__file_name} переименован в {__new_name_txt}")
             except:
                 print(f"Файл {__new_name_txt} уже существует!")
 
@@ -158,29 +158,33 @@ class Program:
         while True:
 
             # Парсинг фото
-            if graf.grafic.chose_vid.get() == "vid":
-                parser.download_videos(browser, new_folder_path)
-                print("Парсинг видео\n")
-
-            # Парсинг фото
-            if graf.grafic.chose_text.get() == "text":
-                parser.download_text(browser, new_file_path)
-                print("Парсинг текста\n")
-
-            # Парсинг фото
             if graf.grafic.chose_ph.get() == "ph":
                 try:
                     parser.download_images(browser, new_folder_path)
-                    print("Парсинг фото\n")
+                    print("Сессия парсинга фото завершена! \n")
                 except Exception as e:
                     print(f"\nПроизошла ошибка:\n{e}\n\n")
                     continue
 
+            # Парсинг текста
+            if graf.grafic.chose_text.get() == "text":
+                try:
+                    parser.download_text(browser, new_file_path)
+                    print("Сессия парсинга текста завершена!\n")
+                except Exception as e:
+                    print(f"\nПроизошла ошибка:\n{e}\n\n")
+                    continue
+
+            # Парсинг видео
+            if graf.grafic.chose_vid.get() == "vid":
+                parser.download_videos(browser, new_folder_path)
+                print("Сессия парсинга видео завершена!\n")
+
             # Если нет данных, то он останавливает
-            if not vk.parser.posts:
+            if vk.parser.posts == []:
                 break
-        print("Программа завершила работу!")
-        parser.end(browser)
-    def end_program(self):  # Условие и выход из программы
+
+    def end_program(self, browser):  # Условие и выход из программы
         print("Парснг завершён!")
+        parser.end(browser)
         # Заверщение программы
