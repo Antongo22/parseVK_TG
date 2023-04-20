@@ -36,14 +36,12 @@ browser = webdriver.Chrome(executable_path=driver_path)
 # Класс выполнения программы
 class Program:
 
-    def __init__(self):
-        self.__path = None
-        self.__folder_name = None
-
     def open_site(self):  # Открытие окна и вход в ВК
         parser.open_site(browser, graf)
 
     def ceate_folder(self, folder_name, path):  # Создание папки для скачивания
+        self.__path = path
+        self.__folder_name = folder_name
         # склеиваем название папки и путь
         global new_folder_path
         new_folder_path = os.path.join(path, folder_name)
@@ -60,6 +58,7 @@ class Program:
             window.error(f"Не удалось создать папку '{folder_name}' в папке '{path}': {error}")
 
     def create_txt(self, txt_name, path):
+
         global file  # Переменная для файла
 
         global file_path  # Переменная для хранения пути к файлам
