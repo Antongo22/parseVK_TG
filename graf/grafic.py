@@ -32,7 +32,7 @@ class Window:
 
             if chose_ph.get() != "ph" and chose_vid.get() != "vid" and chose_text.get() != "text" or selected_folder_path == None:  # Условия для дебилов
                 print("Нет инфы")
-                self.error()
+                self.error("Вы ввели не корректныйе или не все данные!\nПовторите попытку!")
                 return
 
             else:
@@ -65,7 +65,7 @@ class Window:
 
             except:
                 print("Это не подходящая ссылка!\nЕсли вы хотите использовать facebook, не забудьте включить VPN!")
-                self.error()
+                self.error("Вы ввели не корректныйе или не все данные!\nПовторите попытку!")
 
         def save():  # Сохранение ссылки
             global service
@@ -86,7 +86,7 @@ class Window:
 
             else:
                 print("Ссылка не содержит vk/facebook или telegram/tg")
-                self.error_s()
+                self.error("Ссылка не содержит vk/facebook или telegram/tg\nПовторите попытку!")
                 return
 
             done_save(service, reference)
@@ -154,27 +154,13 @@ class Window:
         info.grid()
         window.mainloop()
 
-    def error(self):  # Окно ошибки
+    def error(self, text):  # Окно ошибки
         window = Tk()
         window.title("Парсер ВК и ТГ")
         window.geometry('300x60')
 
         # Вывод текста в текстовое окно
-        info = tk.Label(window, text=f"Вы ввели не корректныйе или не все данные!\nПовторите попытку!")
-        info.grid(row=0, column=0, sticky="n")
-
-        ok_button = tk.Button(window, text="   Ок   ", command=window.destroy)
-        ok_button.grid(row=1, column=0, sticky="se")
-
-        window.mainloop()
-
-    def error_s(self):  # Окно ошибки о том, что сервис не корректный
-        window = Tk()
-        window.title("Парсер ВК и ТГ")
-        window.geometry('300x60')
-
-        # Вывод текста в текстовое окно
-        info = tk.Label(window, text=f"Ссылка не содержит vk/facebook или telegram/tg\nПовторите попытку!")
+        info = tk.Label(window, text=text)
         info.grid(row=0, column=0, sticky="n")
 
         ok_button = tk.Button(window, text="   Ок   ", command=window.destroy)
