@@ -153,7 +153,7 @@ class Program:
 
     def save_meadia(self, browser):  # Сохранение всех данных в одку папку
         global new_folder_path
-
+        error = 0
         # Постоянное обращение к парсеру
         while True:
 
@@ -163,7 +163,8 @@ class Program:
                     parser.download_images(browser, new_folder_path)
                     print("Сессия парсинга фото завершена! \n")
                 except Exception as e:
-                    print(f"\nПроизошла ошибка:\n{e}\n\n")
+                    print(f"\nПроизошла ошибка в фото:\n{e}\n\n")
+                    error +=1
                     continue
 
             # Парсинг текста
@@ -172,7 +173,8 @@ class Program:
                     parser.download_text(browser, new_file_path)
                     print("Сессия парсинга текста завершена!\n")
                 except Exception as e:
-                    print(f"\nПроизошла ошибка:\n{e}\n\n")
+                    print(f"\nПроизошла ошибка в тексте:\n{e}\n\n")
+                    error += 1
                     continue
 
             # Парсинг видео
@@ -181,7 +183,7 @@ class Program:
                 print("Сессия парсинга видео завершена!\n")
 
             # Если нет данных, то он останавливает
-            if vk.parser.posts == []:
+            if vk.parser.posts == [] or error == 15:
                 break
 
     def end_program(self, browser):  # Условие и выход из программы
