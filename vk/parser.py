@@ -176,3 +176,6 @@ class Parser:
 
         # Доп скрол
         browser.execute_script("window.scrollBy(0, 2000)")
+
+    def end(self, browser):
+        browser.quit()

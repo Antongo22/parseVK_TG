@@ -180,6 +180,7 @@ class Program:
             if not vk.parser.posts:
                 break
         print("Программа завершила работу!")
+        parser.end(browser)
     def end_program(self):  # Условие и выход из программы
         print("Парснг завершён!")
         # Заверщение программы
