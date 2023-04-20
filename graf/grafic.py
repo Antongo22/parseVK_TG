@@ -29,15 +29,20 @@ class Window:
 
         def but_start():  # Запуск бота
 
+            # Обработка того, что пользователь ввёл не все данные
             if chose_ph.get() != "ph" and chose_vid.get() != "vid" and chose_text.get() != "text" or selected_folder_path == None:  # Условия для дебилов
                 print("Нет инфы")
                 self.error("Вы ввели не корректныйе или не все данные!\nПовторите попытку!")
                 return
 
+            # Если всё хорошо, то программа запустится
             else:
                 from program.loop_program import Program
+
+                # Создание экземпяра класса
                 prog = Program()
 
+                # Создание разных папок/файлов в зависимости от того, что скачиваем
                 if chose_ph.get() != "none" or chose_vid.get() != "none":
                     prog.ceate_folder("тестовая папка", selected_folder_path)
                 if chose_text.get() != "none":
@@ -45,9 +50,17 @@ class Window:
 
                 prog.open_site()
                 print("Сайт открыт")
+
+                # Переименовывание фалоов
                 prog.get_name()
+
+                # Запись в БД данных о последнем посте
                 # prog.save_last_register_time()
+
+                # Вызов сохранения данных
                 prog.save_meadia()
+
+                # Уведомление о концце программы
                 self.end()
 
         def done_save(service, reference):  # подтверждение того, что сайт нормальный и можно запускать
