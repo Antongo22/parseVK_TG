@@ -42,8 +42,10 @@ class Parser:
             WebDriverWait(browser, 5).until(EC.presence_of_element_located(
                 (By.XPATH, "//h1[@class='page_name']")))
             new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
-            print("ЖЖ " + new_name)
-            print("ф")
+
+            print(new_name)
+            print()
+
             name = "a"
         except Exception:
             if name == "":
@@ -54,7 +56,7 @@ class Parser:
                 new_name = browser.find_element(By.XPATH, "//h2[@id='owner_page_name']").text
                 print(new_name)
 
-        print("aaa " + new_name)
+
 
     def download_images(self, browser, path):   # метод, скачивающий картинки
 

@@ -1,3 +1,5 @@
+import time
+
 import graf.grafic
 from selenium import webdriver
 import os
@@ -207,12 +209,13 @@ class Program:
             # Если коннец страницы, то завершает
             if end_of_page:
                 end += 1
+                time.sleep(20)
                 if end >= 3:
                     break
 
     def end_program(self, browser):  # Условие и выход из программы
         print("Парснг завершён!")
-        parser.end(browser)
+        # parser.end(browser)
         if error_t == "":
             text = f"Программа завершила свою работу\nВсего обработанно:\n {count_p} фото, {count_v} видео и {count_p} фото"
         else:
