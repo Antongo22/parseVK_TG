@@ -71,15 +71,18 @@ class Program:
         # Создаем путь к файлу
         file_path = os.path.join(path, txt_name)
 
-        # Проверяем, существует ли файл с таким именем
-        if os.path.exists(file_path):
-            print(f"Файл {txt_name} уже существует!\n")
-            window.error(f"Файл {txt_name} уже существует!")
-            return
+        try:
+            # Проверяем, существует ли файл с таким именем
+            if os.path.exists(file_path):
+                print(f"Файл {txt_name} уже существует!\n")
+                window.error(f"Файл {txt_name} уже существует!")
+                return
 
-        # Создаем файл и записываем в него текст
-        with open(file_path, "w") as file:
-            file.write("")
+            # Создаем файл и записываем в него текст
+            with open(file_path, "w") as file:
+                file.write("")
+        except:
+            pass
 
         print(f"Файл {txt_name} успешно создан в директории {path}\n")
 
@@ -215,7 +218,7 @@ class Program:
 
     def end_program(self, browser):  # Условие и выход из программы
         print("Парснг завершён!")
-        parser.end(browser)
+        #parser.end(browser)
         if error_t == "":
             text = f"Программа завершила свою работу\nВсего обработанно:\n {count_p} фото, {count_v} видео и {count_p} фото"
         else:
