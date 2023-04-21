@@ -89,7 +89,17 @@ class Program:
         elif graf.grafic.service == 'fb':
             from facebook.parser import new_name
 
-        global new_folder_path, new_name, new_file_path, folder_path
+        global new_name
+        # Если в тескте есть мешающие символы, они будут удалены
+        new_text = ""
+        for char in new_name:
+            if not char.isalpha() and not char.isdigit():
+                new_text += "_"
+            else:
+                new_text += char
+        new_name = new_text
+
+        global new_folder_path, new_file_path, folder_path
         __new_name_txt = new_name + ".txt"
 
         if graf.grafic.chose_ph.get() != "none" or graf.grafic.chose_vid.get() != "none":  # Переименовывание папки в название группы
@@ -186,6 +196,7 @@ class Program:
             end_of_page = browser.execute_script(
                 "return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight")
             # Если нет данных, то он останавливает
+
             if end_of_page:
                 end += 1
                 if end >= 3:
