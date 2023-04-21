@@ -153,6 +153,7 @@ class Program:
 
     def save_meadia(self, browser):  # Сохранение всех данных в одку папку
         global new_folder_path
+        end = 0
         error = 0
         # Постоянное обращение к парсеру
         while True:
@@ -182,9 +183,13 @@ class Program:
                 parser.download_videos(browser, new_folder_path)
                 print("Сессия парсинга видео завершена!\n")
 
+            end_of_page = browser.execute_script(
+                "return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight")
             # Если нет данных, то он останавливает
-            if vk.parser.posts == [] or error == 15:
-                break
+            if end_of_page:
+                end += 1
+                if end >= 3:
+                    break
 
     def end_program(self, browser):  # Условие и выход из программы
         print("Парснг завершён!")
