@@ -119,7 +119,7 @@ class Parser:
         global count_t
 
         print(f"Загружено постов с текстом - {len(posts)} ")
-        print(f"Всего обработано {count_t} картинок")
+        print(f"Всего обработано {count_t} тестовых постов")
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
@@ -170,7 +170,7 @@ class Parser:
         global count_v
 
         print(f"Загружено постов с вилео - {len(posts)} ")
-        print(f"Всего обработано {count_v} картинок")
+        print(f"Всего обработано {count_v} видео")
 
         # Прохождение по видео и их скачивание
         for post in posts:

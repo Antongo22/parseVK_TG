@@ -194,7 +194,7 @@ class Window:
         # Откртие окна ошибки
         __window_error = Tk()
         __window_error.title("Парсер ВК и ТГ")
-        __window_error.geometry('300x60')
+        __window_error.geometry('400x75')
 
         # Вывод текста в текстовое окно
         __info = tk.Label(__window_error, text=text)
