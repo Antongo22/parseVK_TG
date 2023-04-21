@@ -34,11 +34,12 @@ class Window:
             # Обработка того, что пользователь ввёл не все данные
             if chose_ph.get() != "ph" and chose_vid.get() != "vid" and chose_text.get() != "text" or selected_folder_path == None:  # Условия для дебилов
                 print("Нет инфы")
-                self.error("Вы ввели не корректныйе или не все данные!\nПовторите попытку!")
+                self.error("Вы не указали что скачивать или не указали папку!")
                 return
 
             # Если всё хорошо, то программа запустится
             else:
+
                 # Указываем путь к chromedriver.exe
                 driver_path = 'путь_к_файлу/chromedriver.exe'
                 # Создаем экземпляр класса ChromeDriver
@@ -86,7 +87,7 @@ class Window:
 
             except:
                 print("Это не подходящая ссылка!\nЕсли вы хотите использовать facebook, не забудьте включить VPN!")
-                self.error("Вы ввели не корректныйе или не все данные!\nПовторите попытку!")
+                self.error("Это не подходящая ссылка!\nЕсли вы хотите использовать facebook, не забудьте включить VPN!")
 
         def save():  # Сохранение ссылки
             global service
@@ -107,7 +108,7 @@ class Window:
 
             else:
                 print("Ссылка не содержит vk/facebook или telegram/tg")
-                self.error("Ссылка не содержит vk/facebook или telegram/tg\nПовторите попытку!")
+                self.error("Ссылка не содержит vk/facebook или telegram/tg")
                 return
 
             done_save(service, reference)

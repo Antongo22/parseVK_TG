@@ -9,11 +9,11 @@ window = graf.grafic.Window()
 
 # Определяем из каково файла брать класс Parser
 if graf.grafic.service == 'vk':
-    from vk.parser import Parser
+    from vk.parser import Parser, count_p, count_t, count_v
 elif graf.grafic.service == 'tg':
-    from tg.parser import Parser
+    from tg.parser import Parser, count_p, count_t, count_v
 elif graf.grafic.service == 'fb':
-    from facebook.parser import Parser
+    from facebook.parser import Parser, count_p, count_t, count_v
 
 # создаё экземпляр класса Parser
 parser = Parser()
@@ -205,4 +205,7 @@ class Program:
     def end_program(self, browser):  # Условие и выход из программы
         print("Парснг завершён!")
         parser.end(browser)
+
+        print("\nВсего обработанно:")
+        print(f"{count_p} фото, {count_v} видео и {count_p} фото")
         # Заверщение программы
