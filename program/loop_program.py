@@ -26,6 +26,7 @@ file = None  # Переменная для файла
 
 new_name = None  # переменная нового имени для файла
 
+error_t = "" # переменна для хранения ошибки
 
 # Класс выполнения программы
 class Program:
@@ -162,9 +163,10 @@ class Program:
         pass
 
     def save_meadia(self, browser):  # Сохранение всех данных в одку папку
-        global new_folder_path
+        global new_folder_path, error_t
         end = 0
         error = 0
+
         # Постоянное обращение к парсеру
         while True:
 
@@ -195,7 +197,12 @@ class Program:
 
             end_of_page = browser.execute_script(
                 "return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight")
+
             # Если нет данных, то он останавливает
+            if error == 15:
+                error_t = "Произошла ошибка, возможно вы закрыли браузер.\nПовторите попытку!"
+                break
+
 
             if end_of_page:
                 end += 1
@@ -205,8 +212,11 @@ class Program:
     def end_program(self, browser):  # Условие и выход из программы
         print("Парснг завершён!")
         parser.end(browser)
+        if error_t == "":
+            text = f"Программа завершила свою работу\nВсего обработанно:\n {count_p} фото, {count_v} видео и {count_p} фото"
+        else:
+            text = error_t
 
-        text = f"\nВсего обработанно:\n {count_p} фото, {count_v} видео и {count_p} фото"
         print(text)
         return text
         # Заверщение программы

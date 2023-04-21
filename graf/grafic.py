@@ -40,36 +40,39 @@ class Window:
             # Если всё хорошо, то программа запустится
             else:
 
-                # Указываем путь к chromedriver.exe
-                driver_path = 'путь_к_файлу/chromedriver.exe'
-                # Создаем экземпляр класса ChromeDriver
-                browser = webdriver.Chrome(executable_path=driver_path)
+                try:
+                    # Указываем путь к chromedriver.exe
+                    driver_path = 'путь_к_файлу/chromedriver.exe'
+                    # Создаем экземпляр класса ChromeDriver
+                    browser = webdriver.Chrome(executable_path=driver_path)
 
-                from program.loop_program import Program
+                    from program.loop_program import Program
 
-                # Создание экземпяра класса
-                prog = Program()
+                    # Создание экземпяра класса
+                    prog = Program()
 
-                # Создание разных папок/файлов в зависимости от того, что скачиваем
-                if chose_ph.get() != "none" or chose_vid.get() != "none":
-                    prog.ceate_folder("тестовая папка", selected_folder_path)
-                if chose_text.get() != "none":
-                    prog.create_txt("тестовый файл", selected_folder_path)
+                    # Создание разных папок/файлов в зависимости от того, что скачиваем
+                    if chose_ph.get() != "none" or chose_vid.get() != "none":
+                        prog.ceate_folder("тестовая папка", selected_folder_path)
+                    if chose_text.get() != "none":
+                        prog.create_txt("тестовый файл", selected_folder_path)
 
-                prog.open_site(browser)
-                print("Сайт открыт")
+                    prog.open_site(browser)
+                    print("Сайт открыт")
 
-                # Переименовывание фалоов
-                prog.get_name()
+                    # Переименовывание фалоов
+                    prog.get_name()
 
-                # Запись в БД данных о последнем посте
-                # prog.save_last_register_time()
+                    # Запись в БД данных о последнем посте
+                    # prog.save_last_register_time()
 
-                # Вызов сохранения данных
-                prog.save_meadia(browser)
+                    # Вызов сохранения данных
+                    prog.save_meadia(browser)
 
-                # Уведомление о концце программы
-                self.end(prog.end_program(browser))
+                    # Уведомление о концце программы
+                    self.end(prog.end_program(browser))
+                except:
+                    self.error("Произошла ошибка во время парсинга!\nПерезапустите программу!")
 
         def done_save(service, reference):  # подтверждение того, что сайт нормальный и можно запускать
             try:
@@ -179,7 +182,7 @@ class Window:
         __window_ebd.geometry('400x75')
 
         # Вывод текста в текстовое окно
-        __info = tk.Label(__window_ebd, text=f"Программа завершила свою работу! {text}")
+        __info = tk.Label(__window_ebd, text=f"{text}")
         __info.grid()
 
         # Кнопка для выхода
