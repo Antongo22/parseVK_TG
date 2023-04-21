@@ -56,8 +56,7 @@ class Parser:
 
         print("aaa " + new_name)
 
-
-    def download_images(self, browser, path):  # метод, скачивающий картинки
+    def download_images(self, browser, path):   # метод, скачивающий картинки
 
         global last_posts, posts
         from selenium.webdriver.common.action_chains import ActionChains
