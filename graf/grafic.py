@@ -68,10 +68,8 @@ class Window:
                 # Вызов сохранения данных
                 prog.save_meadia(browser)
 
-                prog.end_program(browser)
-
                 # Уведомление о концце программы
-                self.end()
+                self.end(prog.end_program(browser))
 
         def done_save(service, reference):  # подтверждение того, что сайт нормальный и можно запускать
             try:
@@ -174,18 +172,18 @@ class Window:
         # Обработка окна
         __window.mainloop()
 
-    def end(self):  # Функция, сигнализирующая о конце программы
+    def end(self, text):  # Функция, сигнализирующая о конце программы
         # Откртие окна конца
         __window_ebd = Tk()
         __window_ebd.title("Парсер ВК и ТГ")
-        __window_ebd.geometry('250x50')
+        __window_ebd.geometry('400x75')
 
         # Вывод текста в текстовое окно
-        __info = tk.Label(__window_ebd, text=f"Программа завершила свою работу!")
+        __info = tk.Label(__window_ebd, text=f"Программа завершила свою работу! {text}")
         __info.grid()
 
         # Кнопка для выхода
-        __ok_button = tk.Button(__window_ebd, text="   Ок   ", command=__window_ebd.destroy)
+        __ok_button = tk.Button(__window_ebd, text="      Ок      ", command=__window_ebd.destroy)
         __ok_button.grid(row=1, column=0, sticky="se")
 
         # Обработка окна
@@ -203,7 +201,7 @@ class Window:
         __info.grid(row=0, column=0, sticky="n")
 
         # Кнопка для выхода
-        __ok_button = tk.Button(__window_error, text="   Ок   ", command=__window_error.destroy)
+        __ok_button = tk.Button(__window_error, text="      Ок      ", command=__window_error.destroy)
         __ok_button.grid(row=1, column=0, sticky="se")
 
         # Обработка окна

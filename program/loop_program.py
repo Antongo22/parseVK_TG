@@ -206,6 +206,7 @@ class Program:
         print("Парснг завершён!")
         parser.end(browser)
 
-        print("\nВсего обработанно:")
-        print(f"{count_p} фото, {count_v} видео и {count_p} фото")
+        text = f"\nВсего обработанно:\n {count_p} фото, {count_v} видео и {count_p} фото"
+        print(text)
+        return text
         # Заверщение программы
