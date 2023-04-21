@@ -36,7 +36,7 @@ class Parser:
         # Ждем 30 секунд
         time.sleep(30)
 
-
+        name = ""
         try:
             browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
             WebDriverWait(browser, 5).until(EC.presence_of_element_located(
@@ -44,15 +44,18 @@ class Parser:
             new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
             print("ЖЖ " + new_name)
             print("ф")
-        except NoSuchElementException:
-            if new_name is None:
+            name = "a"
+        except Exception:
+            if name == "":
                 print("as")
                 browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
                 WebDriverWait(browser, 5).until(EC.presence_of_element_located(
                     (By.XPATH, "//h2[@id='owner_page_name']")))
                 new_name = browser.find_element(By.XPATH, "//h2[@id='owner_page_name']").text
                 print(new_name)
-            # owner_page_name
+
+        print("aaa " + new_name)
+
 
     def download_images(self, browser, path):  # метод, скачивающий картинки
 
