@@ -203,7 +203,7 @@ class Program:
                 error_t = "Произошла ошибка, возможно вы закрыли браузер.\nПовторите попытку!"
                 break
 
-
+            # Если коннец страницы, то завершает
             if end_of_page:
                 end += 1
                 if end >= 3:
@@ -219,4 +219,3 @@ class Program:
 
         print(text)
         return text
-        # Заверщение программы
