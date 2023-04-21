@@ -41,8 +41,7 @@ class Parser:
             WebDriverWait(browser, 5).until(EC.presence_of_element_located(
                 (By.XPATH, "//h1[@class='page_name']")))
             new_name = browser.find_element(By.XPATH, "//h1[@class='page_name']").text
-            print("ЖЖ " + new_name)
-            print("ф")
+            print(new_name)
         except NoSuchElementException:
             if new_name is None:
                 print("as")
