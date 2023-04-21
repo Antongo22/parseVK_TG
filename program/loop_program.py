@@ -215,7 +215,7 @@ class Program:
 
     def end_program(self, browser):  # Условие и выход из программы
         print("Парснг завершён!")
-        # parser.end(browser)
+        parser.end(browser)
         if error_t == "":
             text = f"Программа завершила свою работу\nВсего обработанно:\n {count_p} фото, {count_v} видео и {count_p} фото"
         else:
