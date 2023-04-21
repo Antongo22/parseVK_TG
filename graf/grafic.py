@@ -39,7 +39,6 @@ class Window:
 
             # Если всё хорошо, то программа запустится
             else:
-
                 try:
                     # Указываем путь к chromedriver.exe
                     driver_path = 'путь_к_файлу/chromedriver.exe'
@@ -71,6 +70,7 @@ class Window:
 
                     # Уведомление о концце программы
                     self.end(prog.end_program(browser))
+
                 except:
                     self.error("Произошла ошибка во время парсинга!\nПерезапустите программу!")
 

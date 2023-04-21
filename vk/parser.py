@@ -36,7 +36,6 @@ class Parser:
         # Ждем 30 секунд
         time.sleep(30)
 
-
         try:
             browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
             WebDriverWait(browser, 5).until(EC.presence_of_element_located(
