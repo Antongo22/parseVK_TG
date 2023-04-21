@@ -93,7 +93,7 @@ class Program:
         # Если в тескте есть мешающие символы, они будут удалены
         new_text = ""
         for char in new_name:
-            if not char.isalpha() and not char.isdigit():
+            if not char.isalpha() and not char.isdigit() and char != " ":
                 new_text += "_"
             else:
                 new_text += char
