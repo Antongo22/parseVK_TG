@@ -227,7 +227,7 @@ class Program:
         global count_v, count_t, count_p
         print("Парснг завершён!")
 
-        if graf.grafic.chose_exit != "none":
+        if graf.grafic.chose_exit.get() == "exit":
             parser.end(browser)
 
         if error_t == "":

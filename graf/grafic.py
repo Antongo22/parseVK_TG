@@ -71,7 +71,6 @@ class Window:
 
                     # Уведомление о концце программы
                     self.end(prog.end_program(browser))
-                    __window.destroy()
 
                 except Exception as e:
                     print("Ошибка:\n" + e)
