@@ -71,7 +71,8 @@ class Window:
                     # Уведомление о концце программы
                     self.end(prog.end_program(browser))
 
-                except:
+                except Exception as e:
+                    print("Ошибка:\n" + e)
                     self.error("Произошла ошибка во время парсинга!\nПерезапустите программу!")
 
         def done_save(service, reference):  # подтверждение того, что сайт нормальный и можно запускать

@@ -51,7 +51,6 @@ class Program:
             print(f"Папка '{folder_name}' успешно создана в папке '{path}'")
         except FileExistsError:
             print(f"Папка '{folder_name}' уже существует в папке '{path}'")
-            window.error(f"Папка '{folder_name}' уже существует в папке '{path}'")
         except OSError as error:
             print(f"Не удалось создать папку '{folder_name}' в папке '{path}': {error}")
             window.error(f"Не удалось создать папку '{folder_name}' в папке '{path}': {error}")

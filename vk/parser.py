@@ -1,3 +1,5 @@
+import pickle
+
 from selenium.common import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -28,8 +30,6 @@ class Parser:
 
         global new_name
         # Открываем вкладку с сайтом https://vk.com/feed
-        options = webdriver.ChromeOptions()
-        options.headless = True
 
         browser.get('https://vk.com/feed')
 
@@ -56,9 +56,7 @@ class Parser:
                 new_name = browser.find_element(By.XPATH, "//h2[@id='owner_page_name']").text
                 print(new_name)
 
-
-
-    def download_images(self, browser, path):   # метод, скачивающий картинки
+    def download_images(self, browser, path):  # метод, скачивающий картинки
 
         global last_posts, posts
         from selenium.webdriver.common.action_chains import ActionChains
