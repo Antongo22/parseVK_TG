@@ -12,6 +12,7 @@ service = None  # переменная для определения типа с
 chose_ph = None  # переменная для состояния данных о фото
 chose_vid = None  # переменная для состояния данных о видео
 chose_text = None  # переменная для состояния данных о текст
+chose_exit = None
 
 
 # Класс графики
@@ -70,10 +71,12 @@ class Window:
 
                     # Уведомление о концце программы
                     self.end(prog.end_program(browser))
+                    __window.destroy()
 
                 except Exception as e:
                     print("Ошибка:\n" + e)
                     self.error("Произошла ошибка во время парсинга!\nПерезапустите программу!")
+                    __window.destroy()
 
         def done_save(service, reference):  # подтверждение того, что сайт нормальный и можно запускать
             try:
@@ -140,12 +143,14 @@ class Window:
             print("Флаг фото: ", chose_ph.get())
             print("Флаг видео: ", chose_vid.get())
             print("Флаг текста: ", chose_text.get())
+            print("Флаг выхода: ", chose_exit.get())
             print()
 
         # Выбор того, что скачиваем
         global chose_ph  # индикатор фото
         global chose_vid  # индикатор видео
         global chose_text  # индикатор текста
+        global chose_exit # Индикатор закрытия браузера
 
         # Создаём чекбоксы и задаём им отключённое значение
         chose_ph = tk.StringVar()
@@ -154,6 +159,9 @@ class Window:
         chose_vid.set("none")
         chose_text = tk.StringVar()
         chose_text.set("none")
+        chose_exit = tk.StringVar()
+        chose_exit.set("none")
+
 
         # Чекбокс фото
         __save_ph = tk.Checkbutton(__window, text="Скачивать фото", variable=chose_ph, onvalue="ph", offvalue="none")
@@ -169,6 +177,11 @@ class Window:
                                      offvalue="none")
         __save_text.grid(row=4, column=0, sticky="sw")
 
+        # Автовыход браузера
+        __exit = tk.Checkbutton(__window, text="Автоматически закрывать браузер", variable=chose_exit, onvalue="exit",
+                                    offvalue="none")
+        __exit.grid(row=5, column=0, sticky="w")
+
         # Кнопка сохранения
         __save_button = tk.Button(text="Сохранить", command=save)
         __save_button.grid(row=3, column=1, padx=0, pady=10)
@@ -180,7 +193,6 @@ class Window:
         # Откртие окна конца
         __window_ebd = Tk()
         __window_ebd.title("Парсер ВК и ТГ")
-        __window_ebd.geometry('400x75')
 
         # Вывод текста в текстовое окно
         __info = tk.Label(__window_ebd, text=f"{text}")
@@ -198,7 +210,6 @@ class Window:
         # Откртие окна ошибки
         __window_error = Tk()
         __window_error.title("Парсер ВК и ТГ")
-        __window_error.geometry('400x75')
 
         # Вывод текста в текстовое окно
         __info = tk.Label(__window_error, text=text)

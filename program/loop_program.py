@@ -220,7 +220,8 @@ class Program:
 
         print("Парснг завершён!")
 
-        # parser.end(browser)
+        if graf.grafic.chose_exit != "none":
+            parser.end(browser)
 
         if error_t == "":
             text = f"Программа завершила свою работу\nВсего обработанно:\n {count_p} фото, {count_v} видео и {count_t} тексовых постов"
