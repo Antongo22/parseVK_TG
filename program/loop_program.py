@@ -216,8 +216,15 @@ class Program:
                     break
 
     def end_program(self, browser):  # Условие и выход из программы
-        global count_p, count_t, count_v
+        # Определяем из каково файла брать класс Parser
+        if graf.grafic.service == 'vk':
+            from vk.parser import count_p, count_t, count_v
+        elif graf.grafic.service == 'tg':
+            from tg.parser import count_p, count_t, count_v
+        elif graf.grafic.service == 'fb':
+            from facebook.parser import count_p, count_t, count_v
 
+        global count_v, count_t, count_p
         print("Парснг завершён!")
 
         if graf.grafic.chose_exit != "none":
