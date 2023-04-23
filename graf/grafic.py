@@ -149,7 +149,7 @@ class Window:
         global chose_ph  # индикатор фото
         global chose_vid  # индикатор видео
         global chose_text  # индикатор текста
-        global chose_exit # Индикатор закрытия браузера
+        global chose_exit  # Индикатор закрытия браузера
 
         # Создаём чекбоксы и задаём им отключённое значение
         chose_ph = tk.StringVar()
@@ -160,7 +160,6 @@ class Window:
         chose_text.set("none")
         chose_exit = tk.StringVar()
         chose_exit.set("none")
-
 
         # Чекбокс фото
         __save_ph = tk.Checkbutton(__window, text="Скачивать фото", variable=chose_ph, onvalue="ph", offvalue="none")
@@ -178,7 +177,7 @@ class Window:
 
         # Автовыход браузера
         __exit = tk.Checkbutton(__window, text="Автоматически закрывать браузер", variable=chose_exit, onvalue="exit",
-                                    offvalue="none")
+                                offvalue="none")
         __exit.grid(row=5, column=0, sticky="w")
 
         # Кнопка сохранения
