@@ -32,7 +32,6 @@ class Parser:
 
         browser.execute_script(f"window.open('{graf.grafic.reference}', '_self')")
 
-
         WebDriverWait(browser, 5).until(EC.presence_of_element_located(
             (By.XPATH, "//h1[@class='x1heor9g x1qlqyl8 x1pd3egz x1a2a7pz']")))
         new_name = browser.find_element(By.XPATH, "//h1[@class='x1heor9g x1qlqyl8 x1pd3egz x1a2a7pz']").text
@@ -179,7 +178,6 @@ class Parser:
 
         # Доп скрол
         browser.execute_script("window.scrollBy(0, 2000)")
-
 
     def end(self, browser):
         browser.quit()
