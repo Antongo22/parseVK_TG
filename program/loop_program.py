@@ -96,6 +96,8 @@ class Program:
             from facebook.parser import new_name
 
         global new_name
+        print("Имя " + new_name)
+
         # Если в тескте есть мешающие символы, они будут удалены
         new_text = ""
         for char in new_name:

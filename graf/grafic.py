@@ -6,6 +6,7 @@ import re
 import requests
 from selenium import webdriver
 
+
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
 service = None  # переменная для определения типа сервиса
@@ -32,6 +33,7 @@ class Window:
 
         def but_start():  # Запуск бота
             global browser
+
             # Обработка того, что пользователь ввёл не все данные
             if chose_ph.get() != "ph" and chose_vid.get() != "vid" and chose_text.get() != "text" or selected_folder_path == None:  # Условия для дебилов
                 print("Нет инфы")
@@ -44,6 +46,9 @@ class Window:
                     # Указываем путь к chromedriver.exe
                     driver_path = 'путь_к_файлу/chromedriver.exe'
                     # Создаем экземпляр класса ChromeDriver
+
+
+
                     browser = webdriver.Chrome(executable_path=driver_path)
 
                     from program.loop_program import Program
