@@ -121,14 +121,13 @@ class Parser:
         global count_t
 
         print(f"Загружено постов с текстом - {len(posts)} ")
-        print(f"Всего обработано {count_t} картинок")
+        print(f"Всего обработано {count_t} текстовых поста")
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
-            from program.loop_program import new_file_path
             # Скачивание картинки
 
-            file = open(new_file_path, "a")
+            file = open(path, "a")
 
             # print(str(path))
 
@@ -172,7 +171,7 @@ class Parser:
         global count_v
 
         print(f"Загружено постов с вилео - {len(posts)} ")
-        print(f"Всего обработано {count_v} картинок")
+        print(f"Всего обработано {count_v} видео")
 
         # Прохождение по видео и их скачивание
         for post in posts:
