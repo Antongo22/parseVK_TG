@@ -11,14 +11,22 @@ window = graf.grafic.Window()
 
 # Определяем из каково файла брать класс Parser
 if graf.grafic.service == 'vk':
-    from vk.parser import Parser, count_p, count_t, count_v
+    if graf.grafic.chat == "im":
+        from vk.parser import Parser_ls, count_p, count_t, count_v
+    elif graf.grafic.chat == "wall":
+        from vk.parser import Parser_wall, count_p, count_t, count_v
+
+
 elif graf.grafic.service == 'tg':
     from tg.parser import Parser, count_p, count_t, count_v
 elif graf.grafic.service == 'fb':
     from facebook.parser import Parser, count_p, count_t, count_v
 
 # создаё экземпляр класса Parser
-parser = Parser()
+if graf.grafic.chat == "im":
+    parser = Parser_ls()
+elif graf.grafic.chat == "wall":
+    parser = Parser_wall()
 
 new_folder_path = None  # Переменная, которая хранит путь к папке сохранения
 
@@ -201,6 +209,7 @@ class Program:
             if graf.grafic.chose_vid.get() == "vid":
                 parser.download_videos(browser, new_folder_path)
                 print("Сессия парсинга видео завершена!\n")
+
 
             end_of_page = browser.execute_script(
                 "return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight")
