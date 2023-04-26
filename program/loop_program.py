@@ -22,6 +22,7 @@ elif graf.grafic.service == 'tg':
 elif graf.grafic.service == 'fb':
     from facebook.parser import Parser, count_p, count_t, count_v
 
+
 # создаё экземпляр класса Parser
 if graf.grafic.service == 'vk':
     if graf.grafic.chat == "im":
