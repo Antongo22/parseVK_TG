@@ -194,6 +194,7 @@ class Program:
                     print("Сессия парсинга текста завершена!\n")
                 except Exception as e:
                     print(f"\nПроизошла ошибка в тексте:\n{e}\n\n")
+
                     error += 1
                     continue
 
