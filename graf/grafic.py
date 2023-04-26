@@ -5,6 +5,7 @@ import tkinter as tk
 import re
 import requests
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
@@ -48,9 +49,10 @@ class Window:
                     driver_path = 'путь_к_файлу/chromedriver.exe'
                     # Создаем экземпляр класса ChromeDriver
 
+                    chrome_options = Options()
+                    chrome_options.add_argument("--enable-notifications")
 
-
-                    browser = webdriver.Chrome(executable_path=driver_path)
+                    browser = webdriver.Chrome(executable_path=driver_path, options=chrome_options)
 
                     from program.loop_program import Program
 
