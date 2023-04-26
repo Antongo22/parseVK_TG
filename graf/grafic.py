@@ -10,6 +10,7 @@ from selenium import webdriver
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
 service = None  # переменная для определения типа сервиса
+chat = None # переменная для определения лс или стена
 chose_ph = None  # переменная для состояния данных о фото
 chose_vid = None  # переменная для состояния данных о видео
 chose_text = None  # переменная для состояния данных о текст
@@ -101,13 +102,20 @@ class Window:
         def save():  # Сохранение ссылки
             global service
             global reference
+            global chat
 
             # Расшифровка ссылкии
             reference = __message_text.get("1.0", "end-1c")
 
+
+
             # Обнаружение в ссылке сервиса
             if re.search("vk", reference):
                 service = "vk"
+                if re.search("im", reference):
+                    chat = "im"
+                else:
+                    chat = "wall"
 
             elif re.search("telegram|tg", reference):
                 service = "tg"
