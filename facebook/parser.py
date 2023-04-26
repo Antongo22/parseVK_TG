@@ -107,14 +107,25 @@ class Parser:
         # Открываем вкладку с сайтом https://vk.com/...
         time.sleep(3)
 
-        # WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH,
-        #                                                                 "//a[@class='wall_text']//img")))
         WebDriverWait(browser, 20).until(EC.presence_of_element_located(
             (By.XPATH, "//div[@class='x1iorvi4 x1pi30zi x1l90r2v x1swvt13']")))
+
+        WebDriverWait(browser, 20).until(EC.presence_of_element_located(
+            (By.XPATH, "//div[@class='xdj266r x11i5rnm xat24cr x1mh8g0r x1vvkbs x126k92a']")))
+
 
         # Загружаем посты с изображениями
         posts = browser.find_elements(By.XPATH,
                                       "//div[@class='x1iorvi4 x1pi30zi x1l90r2v x1swvt13']")
+
+        sec_posts = browser.find_elements(By.XPATH,
+                                      "//div[@class='xdj266r x11i5rnm xat24cr x1mh8g0r x1vvkbs x126k92a']")
+
+        fir_posts = browser.find_elements(By.XPATH,
+                                          "//div[@class='xdj266r x11i5rnm xat24cr x1mh8g0r x1vvkbs']")
+
+        posts += sec_posts
+        posts += fir_posts
         print(posts)
 
         # Отсоединение уже скачанных постов от не
@@ -130,25 +141,52 @@ class Parser:
 
         # Прохождение по картинкам и их скачивание
         for post in posts:
-            # Скачивание картинки
 
-            file = open(path, "a")
 
-            # print(str(path))
+            try:
+                WebDriverWait(browser, 20).until(EC.presence_of_element_located(
+                    (By.XPATH, "//div[@class='x11i5rnm xat24cr x1mh8g0r x1vvkbs xtlvy1s x126k92a']//div[@class='x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz xt0b8zv xzsf02u x1s688f']")))
 
-            # print(str(post.text))
-            # f"{str(count_p)}\n" + str(post.text) + "\n\n"
+                mor = post.find_element(By.XPATH, "//div[@class='x11i5rnm xat24cr x1mh8g0r x1vvkbs xtlvy1s x126k92a']//div[@class='x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz xt0b8zv xzsf02u x1s688f']")
+                # Скачивание картинки
+                mor.click()
 
-            file.write(f"{str(count_t)}\n" + str(post.text) + "\n\n")
+            except:
+                file = open(path, "a")
 
-            count_t += 1
-            actions = ActionChains(browser)
-            time.sleep(2)
+                # print(str(path))
 
-            # Скрол к картинке
-            browser.execute_script("window.scrollBy(0, 300)")
-            actions.move_to_element(post).perform()
-            time.sleep(3)
+                # print(str(post.text))
+                # f"{str(count_p)}\n" + str(post.text) + "\n\n"
+
+                file.write(f"{str(count_t)}\n" + str(post.text) + "\n\n")
+
+                count_t += 1
+                actions = ActionChains(browser)
+                time.sleep(2)
+
+                # Скрол к картинке
+                browser.execute_script("window.scrollBy(0, 300)")
+                actions.move_to_element(post).perform()
+                time.sleep(3)
+            else:
+                file = open(path, "a")
+
+                # print(str(path))
+
+                # print(str(post.text))
+                # f"{str(count_p)}\n" + str(post.text) + "\n\n"
+
+                file.write(f"{str(count_t)}\n" + str(post.text) + "\n\n")
+
+                count_t += 1
+                actions = ActionChains(browser)
+                time.sleep(2)
+
+                # Скрол к картинке
+                browser.execute_script("window.scrollBy(0, 300)")
+                actions.move_to_element(post).perform()
+                time.sleep(3)
 
         # Доп скрол
         browser.execute_script("window.scrollBy(0, 2000)")

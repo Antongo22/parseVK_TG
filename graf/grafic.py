@@ -11,7 +11,7 @@ from selenium.webdriver.chrome.options import Options
 selected_folder_path = None  # переменная пути к файлу, куда будет происходить выгрузка
 reference = None  # переменная для хранения ссылки на сайт
 service = None  # переменная для определения типа сервиса
-chat = None # переменная для определения лс или стена
+chat = None  # переменная для определения лс или стена
 chose_ph = None  # переменная для состояния данных о фото
 chose_vid = None  # переменная для состояния данных о видео
 chose_text = None  # переменная для состояния данных о текст

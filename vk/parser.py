@@ -59,7 +59,6 @@ class Parser_wall:
             except Exception:
                 new_name = "Главная"
 
-
     def download_images(self, browser, path):  # метод, скачивающий картинки
 
         global last_posts, posts
@@ -203,6 +202,7 @@ class Parser_wall:
 
     def end(self, browser):
         browser.quit()
+
 
 class Parser_ls:
 
@@ -398,4 +398,3 @@ class Parser_ls:
 
     def end(self, browser):
         browser.quit()
-
