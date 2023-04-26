@@ -12,6 +12,7 @@ import time
 import requests
 import urllib.request
 from selenium import webdriver
+from selenium.webdriver.common.alert import Alert
 
 new_name = ""
 last_posts = []
@@ -48,7 +49,9 @@ class Parser:
         global last_posts, posts
         from selenium.webdriver.common.action_chains import ActionChains
         # Открываем вкладку с сайтом https://vk.com/...
-        time.sleep(3)
+        time.sleep(7)
+
+        Alert(browser).accept()
 
         WebDriverWait(browser, 20).until(EC.presence_of_element_located(
             (By.XPATH,
