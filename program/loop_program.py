@@ -16,12 +16,10 @@ if graf.grafic.service == 'vk':
     elif graf.grafic.chat == "wall":
         from vk.parser import Parser_wall, count_p, count_t, count_v
 
-
 elif graf.grafic.service == 'tg':
     from tg.parser import Parser, count_p, count_t, count_v
 elif graf.grafic.service == 'fb':
     from facebook.parser import Parser, count_p, count_t, count_v
-
 
 # создаё экземпляр класса Parser
 if graf.grafic.service == 'vk':
@@ -216,20 +214,25 @@ class Program:
                 parser.download_videos(browser, new_folder_path)
                 print("Сессия парсинга видео завершена!\n")
 
-
             end_of_page = browser.execute_script(
                 "return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight")
 
-            # Если нет данных, то он останавливает
-            if error == 15:
-                error_t = "Произошла ошибка, возможно вы закрыли браузер.\nПовторите попытку!"
-                break
+            if graf.grafic.service != 'fb':
+                #Если нет данных, то он останавливает
+                if error == 35:
+                    error_t = "Произошла ошибка, возможно вы закрыли браузер.\nПовторите попытку!"
+                    break
 
-            # Если коннец страницы, то завершает
+                # Если коннец страницы, то завершает
+                if end_of_page:
+                    end += 1
+                    time.sleep(20)
+                    if end >= 3:
+                        break
             if end_of_page:
                 end += 1
                 time.sleep(20)
-                if end >= 3:
+                if end >= 20:
                     break
 
     def end_program(self, browser):  # Условие и выход из программы
