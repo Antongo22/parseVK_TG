@@ -38,6 +38,10 @@ class Parser:
                 (By.XPATH, "//div[@class='x78zum5 xdt5ytf x1wsgfga x9otpla']")))
             new_name = browser.find_element(By.XPATH, "//div[@class='x78zum5 xdt5ytf x1wsgfga x9otpla']").text
             print(new_name)
+
+            time.sleep(10)
+
+            Alert(browser).accept()
         except:
             pass
 
@@ -49,9 +53,7 @@ class Parser:
         global last_posts, posts
         from selenium.webdriver.common.action_chains import ActionChains
         # Открываем вкладку с сайтом https://vk.com/...
-        time.sleep(7)
-
-        Alert(browser).accept()
+        time.sleep(3)
 
         WebDriverWait(browser, 20).until(EC.presence_of_element_located(
             (By.XPATH,
