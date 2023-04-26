@@ -23,10 +23,14 @@ elif graf.grafic.service == 'fb':
     from facebook.parser import Parser, count_p, count_t, count_v
 
 # создаё экземпляр класса Parser
-if graf.grafic.chat == "im":
-    parser = Parser_ls()
-elif graf.grafic.chat == "wall":
-    parser = Parser_wall()
+if graf.grafic.service == 'vk':
+    if graf.grafic.chat == "im":
+        parser = Parser_ls()
+    elif graf.grafic.chat == "wall":
+        parser = Parser_wall()
+
+if graf.grafic.service == 'fb':
+    parser = Parser()
 
 new_folder_path = None  # Переменная, которая хранит путь к папке сохранения
 
