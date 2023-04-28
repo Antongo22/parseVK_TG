@@ -31,6 +31,9 @@ if graf.grafic.service == 'vk':
 if graf.grafic.service == 'fb':
     parser = Parser()
 
+if graf.grafic.service == 'tg':
+    parser = Parser()
+
 new_folder_path = None  # Переменная, которая хранит путь к папке сохранения
 
 new_file_path = None  # Переменная, которая хранит путь к файлу сохранения
@@ -218,7 +221,7 @@ class Program:
                 "return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight")
 
             if graf.grafic.service != 'fb':
-                #Если нет данных, то он останавливает
+                # Если нет данных, то он останавливает
                 if error == 35:
                     error_t = "Произошла ошибка, возможно вы закрыли браузер.\nПовторите попытку!"
                     break
