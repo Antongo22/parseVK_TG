@@ -230,7 +230,7 @@ class Program:
                 if end_of_page:
                     end += 1
                     time.sleep(20)
-                    if end >= 3:
+                    if end >= 10:
                         break
             if end_of_page:
                 end += 1
