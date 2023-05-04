@@ -99,7 +99,7 @@ class Parser_wall:
             time.sleep(3)
 
         # Доп скрол
-        browser.execute_script("window.scrollBy(0, 2000)")
+        browser.execute_script("window.scrollBy(0, 3000)")
 
     def download_text(self, browser, path):  # Метод, скачивающий текст
         global last_posts
