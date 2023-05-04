@@ -1,4 +1,3 @@
-# 14131211Anton
 import pickle
 
 from selenium.webdriver.support import expected_conditions as EC

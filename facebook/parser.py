@@ -1,7 +1,3 @@
-# https://www.facebook.com/elvira.aleinichenko
-# 100013926015392
-# anton14131211
-
 import pickle
 
 from selenium.common import NoSuchElementException
